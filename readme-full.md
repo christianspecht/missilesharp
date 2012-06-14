@@ -14,6 +14,12 @@ The first version will support only one model, the [Dream Cheeky Thunder](http:/
 
 ---
 
+## How to build
+
+Run `build.bat` in the main folder. This will create a new folder named `release` with the compiled assembly.
+
+---
+
 ### Acknowledgements
 
 Thanks to [Chris Dance](https://github.com/codedance) for [the inspiration to this](https://github.com/codedance/Retaliation), especially his blog post [Who broke the build?](http://www.papercut.com/blog/chris/2011/08/19/who-broke-the-build/) which made me want to buy my own missile launcher and write a library for it.

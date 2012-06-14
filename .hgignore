@@ -3,3 +3,4 @@ syntax: glob
 *.user
 bin
 obj
+release
