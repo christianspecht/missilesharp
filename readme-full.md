@@ -26,7 +26,9 @@ Thanks to [Chris Dance](https://github.com/codedance) for [the inspiration to th
 
 MissileSharp makes use of the following open source projects:
 
+- [Hid Library](https://github.com/mikeobrien/HidLibrary)
 - [MSBuild Community Tasks](https://github.com/loresoft/msbuildtasks)
+- [NuGet](http://nuget.codeplex.com/)
 
 ---
 
