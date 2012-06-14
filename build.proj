@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Start">
 
+	
 	<!-- Variables -->
 	<PropertyGroup>
 
@@ -11,14 +12,22 @@
 		<!-- Build Folder -->
 		<OutDir>src\MissileSharp\bin\Release</OutDir>
 
+		<!-- create zip file? -->
+		<CreateZip>0</CreateZip>
+
+		<!-- specify path for MSBuild Community Tasks (MSBuild.Community.Tasks.Targets needs this path) -->
+		<MSBuildCommunityTasksPath>..\net20</MSBuildCommunityTasksPath>
+
 	</PropertyGroup>
 
+	<Import Project="src\packages\MSBuildTasks.1.3.0.528\lib\net20\MSBuild.Community.Tasks.Targets" />
 
 	<!-- "Autostart" -->
 	<Target Name="Start">
 		<CallTarget Targets="DeleteFolders"/>
 		<CallTarget Targets="Build"/>
 		<CallTarget Targets="CopyRelease"/>
+		<CallTarget Condition="$(CreateZip) == '1'" Targets="Zip"/>
 	</Target>
 
 
@@ -44,6 +53,15 @@
 			</ReleaseFiles>
 		</ItemGroup>
 		<Copy SourceFiles="@(ReleaseFiles)" DestinationFolder="$(ReleaseDir)\bin"/>
+	</Target>
+
+
+	<!-- create zip file with content of release\bin folder -->
+	<Target Name="Zip">
+		<CreateItem Include="$(ReleaseDir)\bin\*.*" >
+			<Output ItemName="ZipFiles" TaskParameter="Include"/>
+		</CreateItem>
+		<Zip ZipFileName="$(ReleaseDir)\zip\missilesharp.zip" WorkingDirectory="$(ReleaseDir)\bin" Files="@(ZipFiles)" />
 	</Target>
 
 
