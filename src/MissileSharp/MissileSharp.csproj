@@ -47,9 +47,21 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
+  -->
+  <PropertyGroup>
+    <!-- specify path for MSBuild Community Tasks (MSBuild.Community.Tasks.Targets needs this path) -->
+    <MSBuildCommunityTasksPath>..\net20</MSBuildCommunityTasksPath>
+  </PropertyGroup>
+  <Import Project="..\packages\MSBuildTasks.1.3.0.528\lib\net20\MSBuild.Community.Tasks.Targets" />
   <Target Name="BeforeBuild">
+    <PropertyGroup>
+      <ProdVer>0.0</ProdVer>
+    </PropertyGroup>
+    <PropertyGroup>
+      <ProdVer Condition="'$(VersionNumber)' != ''">$(VersionNumber)</ProdVer>
+    </PropertyGroup>
+    <AssemblyInfo CodeLanguage="CS" OutputFile="AssemblyVersion.cs" AssemblyVersion="$(ProdVer)" AssemblyFileVersion="$(ProdVer)" />
   </Target>
   <Target Name="AfterBuild">
   </Target>
-  -->
 </Project>
