@@ -18,6 +18,12 @@
 		<!-- specify path for MSBuild Community Tasks (MSBuild.Community.Tasks.Targets needs this path) -->
 		<MSBuildCommunityTasksPath>..\net20</MSBuildCommunityTasksPath>
 
+		<!-- create NuGet package? -->
+		<CreatePackage>0</CreatePackage>
+
+		<!-- temporary NuGet working folder -->
+		<NuGetDir>nuget-tmp</NuGetDir>
+
 	</PropertyGroup>
 
 	<Import Project="src\packages\MSBuildTasks.1.3.0.528\lib\net20\MSBuild.Community.Tasks.Targets" />
@@ -28,12 +34,14 @@
 		<CallTarget Targets="Build"/>
 		<CallTarget Targets="CopyRelease"/>
 		<CallTarget Condition="$(CreateZip) == '1'" Targets="Zip"/>
+		<CallTarget Condition="$(CreatePackage) == '1'" Targets="NuGet"/>
 	</Target>
 
 
 	<!-- delete release folder -->
 	<Target Name="DeleteFolders">
 		<RemoveDir Directories="$(ReleaseDir)"/>
+		<RemoveDir Directories="$(NuGetDir)"/>
 	</Target>
 
 
@@ -62,6 +70,34 @@
 			<Output ItemName="ZipFiles" TaskParameter="Include"/>
 		</CreateItem>
 		<Zip ZipFileName="$(ReleaseDir)\zip\missilesharp-$(VersionNumber).zip" WorkingDirectory="$(ReleaseDir)\bin" Files="@(ZipFiles)" />
+	</Target>
+
+
+	<!-- create NuGet package-->
+	<Target Name="NuGet">
+		<MakeDir Directories="$(NuGetDir)\lib\net40"/>
+		<MakeDir Directories="$(ReleaseDir)\nuget"/>
+		
+		<!-- 1. copy the whole release folder (except the assemblies) and the nuspec file into the temp. NuGet folder -->
+		<ItemGroup>
+			<PackageFiles1
+				Include="$(ReleaseDir)\bin\*.*;
+						nuget\*.nuspec"
+				Exclude="$(ReleaseDir)\bin\*.dll">
+			</PackageFiles1>
+		</ItemGroup>
+		<Copy SourceFiles="@(PackageFiles1)" DestinationFolder="$(NuGetDir)"/>
+		
+		<!-- 2. copy the assemblies into the net40 subfolder -->
+		<ItemGroup>
+			<PackageFiles2
+				Include="$(ReleaseDir)\bin\*.dll">
+			</PackageFiles2>
+		</ItemGroup>
+		<Copy SourceFiles="@(PackageFiles2)" DestinationFolder="$(NuGetDir)\lib\net40"/>
+		
+		<!-- 3. create package -->
+		<Exec Command="src\packages\NuGet.CommandLine.1.8.40002\tools\nuget.exe pack $(NuGetDir)\missilesharp.nuspec -OutputDirectory $(ReleaseDir)\nuget -Version $(VersionNumber)"></Exec>
 	</Target>
 
 

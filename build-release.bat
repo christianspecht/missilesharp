@@ -1,3 +1,3 @@
 @echo off
 
-build.bat 1
+build.bat 1 1

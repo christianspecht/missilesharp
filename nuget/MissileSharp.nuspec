@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>MissileSharp</id>
+    <version>0.0</version>
+    <authors>Christian Specht</authors>
+    <owners>Christian Specht</owners>
+    <licenseUrl>https://bitbucket.org/christianspecht/missilesharp/raw/tip/License.txt</licenseUrl>
+    <projectUrl>http://christianspecht.de/missilesharp/</projectUrl>
+    <iconUrl>https://bitbucket.org/christianspecht/missilesharp/raw/tip/img/logo128x128.png</iconUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>.NET library to control an USB Missile Launcher</description>
+    <copyright>Copyright Christian Specht 2012</copyright>
+    <tags>.NET USB Missile</tags>
+  </metadata>
+</package>
