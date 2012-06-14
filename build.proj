@@ -61,7 +61,7 @@
 		<CreateItem Include="$(ReleaseDir)\bin\*.*" >
 			<Output ItemName="ZipFiles" TaskParameter="Include"/>
 		</CreateItem>
-		<Zip ZipFileName="$(ReleaseDir)\zip\missilesharp.zip" WorkingDirectory="$(ReleaseDir)\bin" Files="@(ZipFiles)" />
+		<Zip ZipFileName="$(ReleaseDir)\zip\missilesharp-$(VersionNumber).zip" WorkingDirectory="$(ReleaseDir)\bin" Files="@(ZipFiles)" />
 	</Target>
 
 
