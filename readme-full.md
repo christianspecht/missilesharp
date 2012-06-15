@@ -11,6 +11,18 @@ For now it supports only one model, the [Dream Cheeky Thunder](http://www.dreamc
 
 - [Main Project page on Bitbucket](https://bitbucket.org/christianspecht/missilesharp)
 - [Download page](https://bitbucket.org/christianspecht/missilesharp/downloads)
+- [NuGet gallery](https://nuget.org/packages/MissileSharp)
+
+---
+
+## Setup
+
+You can either download MissileSharp from the download page on Bitbucket (link above) or install with [NuGet](https://nuget.org/):
+
+[![NuGet](https://bitbucket.org/christianspecht/missilesharp/raw/tip/img/nuget.png)](https://nuget.org/packages/MissileSharp)
+
+The control software that came with the missile launcher is not needed at all.  
+Just connect the device to your machine, and Windows should automatically recognize it. That's enough for MissileSharp to control it.
 
 ---
 
