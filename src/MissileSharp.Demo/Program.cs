@@ -17,6 +17,7 @@ namespace MissileSharp.Demo
                     launcher.Reset();
                     launcher.Right(1000);
                     launcher.Up(500);
+                    launcher.Fire(2);
                 }
             }
         }

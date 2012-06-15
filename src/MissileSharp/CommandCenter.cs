@@ -90,6 +90,31 @@ namespace MissileSharp
         }
 
         /// <summary>
+        /// Fire X missiles
+        /// </summary>
+        /// <param name="numberOfShots">Number of missiles to fire (1-4)</param>
+        public void Fire(byte numberOfShots)
+        {
+            if (numberOfShots < 1)
+            {
+                numberOfShots = 1;
+            }
+
+            if (numberOfShots > 4)
+            {
+                numberOfShots = 4; 
+            }
+
+            Thread.Sleep(launcher.WaitBeforeFire);
+
+            for (int i = 1; i <= numberOfShots; i++)
+            {
+                SendCommand(launcher.Fire);
+                Thread.Sleep(launcher.WaitAfterFire);
+            }
+        }
+
+        /// <summary>
         /// dispose the device
         /// </summary>
         public void Dispose()

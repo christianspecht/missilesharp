@@ -47,14 +47,24 @@ namespace MissileSharp
         byte Fire { get; }
 
         /// <summary>
-        /// Reset position: time to move left
+        /// Reset position: move X milliseconds left
         /// </summary>
         int ResetTimeLeft { get; }
 
         /// <summary>
-        /// Reset position: time to move down
+        /// Reset position: move X milliseconds down
         /// </summary>
         int ResetTimeDown { get; }
+
+        /// <summary>
+        /// Wait X milliseconds before first shot
+        /// </summary>
+        int WaitBeforeFire { get; }
+
+        /// <summary>
+        /// Wait X milliseconds after each shot
+        /// </summary>
+        int WaitAfterFire { get; }
 
         /// <summary>
         /// Create the final command to send to the launcher

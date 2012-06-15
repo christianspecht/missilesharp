@@ -56,6 +56,16 @@ namespace MissileSharp
             get { return 1000; }
         }
 
+        public int WaitBeforeFire
+        {
+            get { return 500; }
+        }
+
+        public int WaitAfterFire
+        {
+            get { return 4500; }
+        }
+
         public byte[] CreateCommand(byte command)
         {
             var data = new byte[9];
