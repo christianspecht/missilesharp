@@ -1,9 +1,9 @@
 ![logo](https://bitbucket.org/christianspecht/missilesharp/raw/tip/img/logo128x128.png)
 
-MissileSharp will be a .NET library to control an USB Missile Launcher.
+MissileSharp is a .NET library to control an USB Missile Launcher.
 
-The first version will support only one model, the [Dream Cheeky Thunder](http://www.dreamcheeky.com/thunder-missile-launcher), as this is the only one I own.  
-*(I'm in Germany, and I bought [my missile launcher](http://www.getdigital.de/products/USB_Raketenwerfer) from a German Shop...but it seems to be the same model as the Dream Cheeky Thunder.)*
+For now it supports only one model, the [Dream Cheeky Thunder](http://www.dreamcheeky.com/thunder-missile-launcher), as this is the only one I own.  
+*(I'm in Germany, and I bought my missile launcher [from a German shop](http://www.getdigital.de/products/USB_Raketenwerfer)...but it seems to be the exact same model as the Dream Cheeky Thunder.)*
 
 ---
 
@@ -11,6 +11,25 @@ The first version will support only one model, the [Dream Cheeky Thunder](http:/
 
 - [Main Project page on Bitbucket](https://bitbucket.org/christianspecht/missilesharp)
 - [Download page](https://bitbucket.org/christianspecht/missilesharp/downloads)
+
+---
+
+## How to use
+
+The main class of MissileSharp is the `CommandCenter` class. It has only one constructor, which expects a parameter of the type `ILauncherModel` - these are the different missile launcher models.  
+*(As MissileSharp only supports one model at the moment, you can only pass a* `ThunderMissileLauncher` *for now)*
+
+When you have created an instance of the `CommandCenter` class, you can use its methods to control the missile launcher.  
+There are only three different types of commands:
+
+1. Move (`Up` / `Down` / `Left` / `Right`)  
+Move the launcher in the specified direction. One parameter to specify the duration in milliseconds.
+2. `Reset`  
+Reset the position (move to bottom left)
+3. `Fire`  
+Fire up to four missiles. One parameter to specify the number of shots.
+
+MissileSharp comes with a demo console application - [see the code for a complete example](https://bitbucket.org/christianspecht/missilesharp/src/tip/src/MissileSharp.Demo/Program.cs).
 
 ---
 
