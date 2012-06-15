@@ -50,9 +50,34 @@ namespace MissileSharp
         /// <param name="milliseconds">Time to move</param>
         public void Up(int milliseconds)
         {
-            SendCommand(launcher.Up);
-            Thread.Sleep(milliseconds);
-            SendCommand(launcher.Stop);
+            SendMoveCommand(launcher.Up, milliseconds);
+        }
+
+        /// <summary>
+        /// Move down for X milliseconds
+        /// </summary>
+        /// <param name="milliseconds">Time to move</param>
+        public void Down(int milliseconds)
+        {
+            SendMoveCommand(launcher.Down, milliseconds);
+        }
+
+        /// <summary>
+        /// Turn left for X milliseconds
+        /// </summary>
+        /// <param name="milliseconds">Time to move</param>
+        public void Left(int milliseconds)
+        {
+            SendMoveCommand(launcher.Left, milliseconds);
+        }
+
+        /// <summary>
+        /// Turn right for X milliseconds
+        /// </summary>
+        /// <param name="milliseconds">Time to move</param>
+        public void Right(int milliseconds)
+        {
+            SendMoveCommand(launcher.Right, milliseconds);
         }
 
         /// <summary>
@@ -74,6 +99,21 @@ namespace MissileSharp
         {
             var data = launcher.CreateCommand(command);
             device.Write(data);
+        }
+
+        /// <summary>
+        /// Send a move command to the device, wait X milliseconds, then stop
+        /// </summary>
+        /// <param name="command">The command to send</param>
+        /// <param name="milliseconds">Time to wait</param>
+        private void SendMoveCommand(byte command, int milliseconds)
+        {
+            if (IsReady)
+            {
+                SendCommand(command);
+                Thread.Sleep(milliseconds);
+                SendCommand(launcher.Stop);
+            }
         }
     }
 }

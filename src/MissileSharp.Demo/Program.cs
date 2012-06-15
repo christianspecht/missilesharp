@@ -10,9 +10,13 @@ namespace MissileSharp.Demo
             Console.WriteLine("Press <RETURN> to run the demo!");
             Console.ReadLine();
 
-            using (var launcher = new MissileLauncher(new ThunderMissileLauncher()))
+            using (var launcher = new CommandCenter(new ThunderMissileLauncher()))
             {
-                launcher.Up(500);
+                if (launcher.IsReady)
+                {
+                    launcher.Right(500);
+                    launcher.Left(500);
+                }
             }
         }
     }
