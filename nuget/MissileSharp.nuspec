@@ -12,5 +12,8 @@
     <description>.NET library to control an USB Missile Launcher</description>
     <copyright>Copyright Christian Specht 2012</copyright>
     <tags>.NET USB Missile</tags>
+    <dependencies>
+      <dependency id="hidlibrary" version="[3.2.8.0]" />
+    </dependencies>
   </metadata>
 </package>

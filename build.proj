@@ -94,7 +94,7 @@
 		<!-- 2. copy the assemblies into the net40 subfolder -->
 		<ItemGroup>
 			<PackageFiles2
-				Include="$(ReleaseDir)\bin\*.dll;
+				Include="$(ReleaseDir)\bin\m*.dll;
 						$(ReleaseDir)\bin\*.xml">
 			</PackageFiles2>
 		</ItemGroup>
