@@ -2,7 +2,7 @@
 namespace MissileSharp
 {
     /// <summary>
-    /// settings for Dream Cheeky Thunder Missile Launcher
+    /// Dream Cheeky Thunder Missile Launcher
     /// </summary>
     public class ThunderMissileLauncher : ILauncherModel
     {
