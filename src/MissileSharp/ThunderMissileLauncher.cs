@@ -46,6 +46,16 @@ namespace MissileSharp
             get { return 16; }
         }
 
+        public int ResetTimeLeft
+        {
+            get { return 6000; }
+        }
+
+        public int ResetTimeDown
+        {
+            get { return 1000; }
+        }
+
         public byte[] CreateCommand(byte command)
         {
             var data = new byte[9];

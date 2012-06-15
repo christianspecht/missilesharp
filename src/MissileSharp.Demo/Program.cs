@@ -14,8 +14,9 @@ namespace MissileSharp.Demo
             {
                 if (launcher.IsReady)
                 {
-                    launcher.Right(500);
-                    launcher.Left(500);
+                    launcher.Reset();
+                    launcher.Right(1000);
+                    launcher.Up(500);
                 }
             }
         }

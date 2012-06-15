@@ -47,6 +47,16 @@ namespace MissileSharp
         byte Fire { get; }
 
         /// <summary>
+        /// Reset position: time to move left
+        /// </summary>
+        int ResetTimeLeft { get; }
+
+        /// <summary>
+        /// Reset position: time to move down
+        /// </summary>
+        int ResetTimeDown { get; }
+
+        /// <summary>
         /// Create the final command to send to the launcher
         /// </summary>
         /// <param name="command">The command to send (move, fire etc.)</param>

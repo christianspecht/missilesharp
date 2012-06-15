@@ -81,6 +81,15 @@ namespace MissileSharp
         }
 
         /// <summary>
+        /// Reset the launcher position (=move to bottom left)
+        /// </summary>
+        public void Reset()
+        {
+            Down(launcher.ResetTimeDown);
+            Left(launcher.ResetTimeLeft);
+        }
+
+        /// <summary>
         /// dispose the device
         /// </summary>
         public void Dispose()
