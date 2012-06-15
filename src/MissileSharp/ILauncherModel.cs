@@ -4,7 +4,7 @@ namespace MissileSharp
     /// <summary>
     /// base interface for all missile launcher models
     /// </summary>
-    public interface ILauncherDevice
+    public interface ILauncherModel
     {
         /// <summary>
         /// VendorId of the device

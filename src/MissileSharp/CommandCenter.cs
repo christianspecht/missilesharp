@@ -5,12 +5,12 @@ using HidLibrary;
 
 namespace MissileSharp
 {
-    public class MissileLauncher : IDisposable
+    public class CommandCenter : IDisposable
     {
         HidDevice device;
-        ILauncherDevice launcher;
+        ILauncherModel launcher;
 
-        public MissileLauncher(ILauncherDevice launcher)
+        public CommandCenter(ILauncherModel launcher)
         {
             this.launcher = launcher;
 

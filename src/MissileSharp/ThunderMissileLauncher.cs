@@ -4,7 +4,7 @@ namespace MissileSharp
     /// <summary>
     /// settings for Dream Cheeky Thunder Missile Launcher
     /// </summary>
-    public class ThunderMissileLauncher : ILauncherDevice
+    public class ThunderMissileLauncher : ILauncherModel
     {
         public int VendorId
         {
