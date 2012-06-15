@@ -47,7 +47,8 @@ MissileSharp comes with a demo console application - [see the code for a complet
 
 ## How to build
 
-Run `build.bat` in the main folder. This will create a new folder named `release` with the compiled assembly.
+Run `build.bat` in the main folder. This will create a new folder named `release` with the compiled assembly.  
+Run `build-release.bat` to create a NuGet package and a zip file (all in the `release` folder) as well.
 
 ---
 
