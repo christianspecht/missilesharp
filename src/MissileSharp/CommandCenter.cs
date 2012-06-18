@@ -48,52 +48,57 @@ namespace MissileSharp
         /// Move up for X milliseconds
         /// </summary>
         /// <param name="milliseconds">Time to move</param>
-        public void Up(int milliseconds)
+        public CommandCenter Up(int milliseconds)
         {
             SendMoveCommand(launcher.Up, milliseconds);
+            return this;
         }
 
         /// <summary>
         /// Move down for X milliseconds
         /// </summary>
         /// <param name="milliseconds">Time to move</param>
-        public void Down(int milliseconds)
+        public CommandCenter Down(int milliseconds)
         {
             SendMoveCommand(launcher.Down, milliseconds);
+            return this;
         }
 
         /// <summary>
         /// Turn left for X milliseconds
         /// </summary>
         /// <param name="milliseconds">Time to move</param>
-        public void Left(int milliseconds)
+        public CommandCenter Left(int milliseconds)
         {
             SendMoveCommand(launcher.Left, milliseconds);
+            return this;
         }
 
         /// <summary>
         /// Turn right for X milliseconds
         /// </summary>
         /// <param name="milliseconds">Time to move</param>
-        public void Right(int milliseconds)
+        public CommandCenter Right(int milliseconds)
         {
             SendMoveCommand(launcher.Right, milliseconds);
+            return this;
         }
 
         /// <summary>
         /// Reset the launcher position (=move to bottom left)
         /// </summary>
-        public void Reset()
+        public CommandCenter Reset()
         {
             Down(launcher.ResetTimeDown);
             Left(launcher.ResetTimeLeft);
+            return this;
         }
 
         /// <summary>
         /// Fire X missiles
         /// </summary>
         /// <param name="numberOfShots">Number of missiles to fire (1-4)</param>
-        public void Fire(byte numberOfShots)
+        public CommandCenter Fire(byte numberOfShots)
         {
             if (numberOfShots < 1)
             {
@@ -112,6 +117,8 @@ namespace MissileSharp
                 SendCommand(launcher.Fire);
                 Thread.Sleep(launcher.WaitAfterFire);
             }
+
+            return this;
         }
 
         /// <summary>
