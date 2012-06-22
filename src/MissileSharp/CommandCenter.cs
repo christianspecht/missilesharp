@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using HidLibrary;
@@ -41,6 +42,47 @@ namespace MissileSharp
             get
             {
                 return (device != null && device.IsOpen);
+            }
+        }
+
+        /// <summary>
+        /// Runs a LauncherCommand
+        /// </summary>
+        /// <param name="command">The command to run</param>
+        public void RunCommand(LauncherCommand command)
+        {
+            switch (command.Command)
+            {
+                case "up":
+                    Up(command.Value);
+                    break;
+                case "down":
+                    Down(command.Value);
+                    break;
+                case "left":
+                    Left(command.Value);
+                    break;
+                case "right":
+                    Right(command.Value);
+                    break;
+                case "reset":
+                    Reset();
+                    break;
+                case "fire":
+                    Fire(command.Value);
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// Runs a list of LauncherCommands
+        /// </summary>
+        /// <param name="commands">The list of commands to run</param>
+        public void RunCommandSet(IEnumerable<LauncherCommand> commands)
+        {
+            foreach (var cmd in commands)
+            {
+                RunCommand(cmd);
             }
         }
 
@@ -98,7 +140,7 @@ namespace MissileSharp
         /// Fire X missiles
         /// </summary>
         /// <param name="numberOfShots">Number of missiles to fire (1-4)</param>
-        public CommandCenter Fire(byte numberOfShots)
+        public CommandCenter Fire(int numberOfShots)
         {
             if (numberOfShots < 1)
             {

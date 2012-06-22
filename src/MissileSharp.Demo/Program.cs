@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using MissileSharp;
 
 namespace MissileSharp.Demo
@@ -11,25 +12,49 @@ namespace MissileSharp.Demo
             Console.WriteLine(new string('-', 30));
             Console.WriteLine();
             Console.WriteLine("This will move the missile launcher and fire 2 missiles.");
-            Console.WriteLine("Press <RETURN> to run the demo!");
-            Console.ReadLine();
+            Console.WriteLine();
+            Console.WriteLine("Pick one of the following options (enter the number), then press <RETURN> to run the demo!");
+            Console.WriteLine();
+            Console.WriteLine("1 : The commands are executed directly");
+            Console.WriteLine("2 : A pre-programmed sequence of commands is executed");
+            Console.WriteLine();
+            string choice = Console.ReadLine();
             Console.WriteLine();
 
             using (var launcher = new CommandCenter(new ThunderMissileLauncher()))
             {
                 if (launcher.IsReady)
                 {
-                    Console.WriteLine("1. reset position (move to bottom left)");
-                    launcher.Reset();
+                    switch (choice)
+                    {
+                        case "1":
 
-                    Console.WriteLine("2. turn right (1 second)");
-                    launcher.Right(1000);
+                            Console.WriteLine("1. reset position (move to bottom left)");
+                            launcher.Reset();
 
-                    Console.WriteLine("3. move up (0.5 seconds)");
-                    launcher.Up(500);
+                            Console.WriteLine("2. turn right (1 second)");
+                            launcher.Right(1000);
 
-                    Console.WriteLine("4. fire 2 missiles");
-                    launcher.Fire(2);
+                            Console.WriteLine("3. move up (0.5 seconds)");
+                            launcher.Up(500);
+
+                            Console.WriteLine("4. fire 2 missiles");
+                            launcher.Fire(2);
+
+                            break;
+
+                        case "2":
+
+                            var commands = new List<LauncherCommand>();
+                            commands.Add(new LauncherCommand("reset", 0));
+                            commands.Add(new LauncherCommand("right", 1000));
+                            commands.Add(new LauncherCommand("up", 500));
+                            commands.Add(new LauncherCommand("fire", 2));
+
+                            launcher.RunCommandSet(commands);
+
+                            break;
+                    }
                 }
             }
         }
