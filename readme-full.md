@@ -61,6 +61,7 @@ MissileSharp makes use of the following open source projects:
 - [Hid Library](https://github.com/mikeobrien/HidLibrary)
 - [MSBuild Community Tasks](https://github.com/loresoft/msbuildtasks)
 - [NuGet](http://nuget.codeplex.com/)
+- [NUnit](http://nunit.org/)
 
 ---
 

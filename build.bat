@@ -6,6 +6,6 @@ cd %~dp0
 
 call version-number.bat
 
-msbuild build.proj /p:CreateZip="%1" /p:CreatePackage="%2"
+msbuild build.proj /p:CreateZip="%1" /p:CreatePackage="%2" /p:RunTests="%3"
 
 pause

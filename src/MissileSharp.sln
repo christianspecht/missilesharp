@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MissileSharp", "MissileShar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MissileSharp.Demo", "MissileSharp.Demo\MissileSharp.Demo.csproj", "{394940EB-82E1-4555-95B4-CBAECCF1071E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MissileSharp.Tests", "MissileSharp.Tests\MissileSharp.Tests.csproj", "{7581EE79-F99E-4A48-8446-C44D941A8544}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,16 @@ Global
 		{394940EB-82E1-4555-95B4-CBAECCF1071E}.Release|Mixed Platforms.Build.0 = Release|x86
 		{394940EB-82E1-4555-95B4-CBAECCF1071E}.Release|x86.ActiveCfg = Release|x86
 		{394940EB-82E1-4555-95B4-CBAECCF1071E}.Release|x86.Build.0 = Release|x86
+		{7581EE79-F99E-4A48-8446-C44D941A8544}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7581EE79-F99E-4A48-8446-C44D941A8544}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7581EE79-F99E-4A48-8446-C44D941A8544}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{7581EE79-F99E-4A48-8446-C44D941A8544}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{7581EE79-F99E-4A48-8446-C44D941A8544}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7581EE79-F99E-4A48-8446-C44D941A8544}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7581EE79-F99E-4A48-8446-C44D941A8544}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7581EE79-F99E-4A48-8446-C44D941A8544}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{7581EE79-F99E-4A48-8446-C44D941A8544}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{7581EE79-F99E-4A48-8446-C44D941A8544}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

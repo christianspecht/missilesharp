@@ -24,6 +24,15 @@
 		<!-- temporary NuGet working folder -->
 		<NuGetDir>nuget-tmp</NuGetDir>
 
+		<!-- run unit tests? -->
+		<RunTests>0</RunTests>
+
+		<!-- Build Folder for test assembly -->
+		<TestOutDir>src\MissileSharp.Tests\bin\Release</TestOutDir>
+		
+		<!-- path to NUnit runner -->
+		<TestNUnitDir>src\packages\NUnit.Runners.2.6.0.12051\tools</TestNUnitDir>
+
 	</PropertyGroup>
 
 	<Import Project="src\packages\MSBuildTasks.1.3.0.528\lib\net20\MSBuild.Community.Tasks.Targets" />
@@ -32,6 +41,7 @@
 	<Target Name="Start">
 		<CallTarget Targets="DeleteFolders"/>
 		<CallTarget Targets="Build"/>
+		<CallTarget Condition="$(RunTests) == '1'" Targets="Test"/>
 		<CallTarget Targets="CopyRelease"/>
 		<CallTarget Condition="$(CreateZip) == '1'" Targets="Zip"/>
 		<CallTarget Condition="$(CreatePackage) == '1'" Targets="NuGet"/>
@@ -48,6 +58,15 @@
 	<!-- compile solution as release -->
 	<Target Name="Build">
 		<MSBuild Projects="src\MissileSharp.sln" Properties="Configuration=Release"/>
+	</Target>
+
+
+	<!-- run unit tests -->
+	<Target Name="Test">
+		<CreateItem Include="$(TestOutDir)\*.Tests.dll">
+			<Output TaskParameter="Include" ItemName="TestAssembly" />
+		</CreateItem>
+		<NUnit ToolPath="$(TestNUnitDir)" DisableShadowCopy="true" Assemblies="@(TestAssembly)" />
 	</Target>
 
 
