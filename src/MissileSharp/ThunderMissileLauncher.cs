@@ -4,6 +4,7 @@ namespace MissileSharp
     /// <summary>
     /// Dream Cheeky Thunder Missile Launcher
     /// </summary>
+    #pragma warning disable 1591
     public class ThunderMissileLauncher : ILauncherModel
     {
         public int VendorId
