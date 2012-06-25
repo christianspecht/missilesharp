@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
-using HidLibrary;
 
 namespace MissileSharp
 {
@@ -11,27 +9,29 @@ namespace MissileSharp
     /// </summary>
     public class CommandCenter : IDisposable
     {
-        HidDevice device;
+        IHidDevice device;
         ILauncherModel launcher;
 
         /// <summary>
         /// Initializes a new instance of the CommandCenter class using the specified missile launcher model.
         /// </summary>
         /// <param name="launcher">missile launcher model you want to control</param>
-        public CommandCenter(ILauncherModel launcher)
+        public CommandCenter(ILauncherModel launcher) : this(launcher, new HidLibraryDevice())
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the CommandCenter class using the specified missile launcher model and HID library implementation.
+        /// </summary>
+        /// <param name="launcher">missile launcher model you want to control</param>
+        /// <param name="device">HID library that will be used</param>
+        /// <remarks>This is only for testing - HidLibrary is the default library for production use</remarks>
+        internal CommandCenter(ILauncherModel launcher, IHidDevice device)
         {
             this.launcher = launcher;
+            this.device = device;
 
-            var devices = HidDevices.Enumerate(launcher.VendorId, launcher.DeviceId);
-            if (devices.Any())
-            {
-                device = devices.First();
-                device.OpenDevice();
-
-                while (!device.IsConnected || !device.IsOpen)
-                {
-                }
-            }
+            device.Initialize(launcher.VendorId, launcher.DeviceId);
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace MissileSharp
         {
             get
             {
-                return (device != null && device.IsOpen);
+                return device.IsReady;
             }
         }
 
@@ -170,7 +170,7 @@ namespace MissileSharp
         {
             if (IsReady)
             {
-                device.CloseDevice();
+                device.Dispose();
             }
         }
 
@@ -181,7 +181,7 @@ namespace MissileSharp
         private void SendCommand(byte command)
         {
             var data = launcher.CreateCommand(command);
-            device.Write(data);
+            device.SendData(data);
         }
 
         /// <summary>
