@@ -47,8 +47,10 @@
     <Compile Include="..\MissileSharp\AssemblyVersion.cs">
       <Link>AssemblyVersion.cs</Link>
     </Compile>
-    <Compile Include="SomeTest.cs" />
+    <Compile Include="CommandCenterTests.cs" />
+    <Compile Include="MockHidDevice.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StubMissileLauncher.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
