@@ -178,7 +178,7 @@ namespace MissileSharp
         /// Send a command to the device
         /// </summary>
         /// <param name="command">The command to send</param>
-        private void SendCommand(byte command)
+        internal void SendCommand(byte command)
         {
             var data = launcher.CreateCommand(command);
             device.SendData(data);
@@ -189,7 +189,7 @@ namespace MissileSharp
         /// </summary>
         /// <param name="command">The command to send</param>
         /// <param name="milliseconds">Time to wait</param>
-        private void SendMoveCommand(byte command, int milliseconds)
+        internal void SendMoveCommand(byte command, int milliseconds)
         {
             if (IsReady)
             {

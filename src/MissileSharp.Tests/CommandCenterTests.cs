@@ -24,23 +24,30 @@ namespace MissileSharp.Tests
         }
 
         [Test]
-        public void Up__SendsTwoCommands()
+        public void SendCommand_Fire_SendsFire()
         {
-            cmd.Up(0);
+            cmd.SendCommand(launcher.Fire);
+            Assert.AreEqual(launcher.Fire, device.ReceivedCommands[0]);
+        }
+
+        [Test]
+        public void SendMoveCommand_Up__SendsTwoCommands()
+        {
+            cmd.SendMoveCommand(launcher.Up, 0);
             Assert.AreEqual(2, device.ReceivedCommands.Count);
         }
 
         [Test]
-        public void Up_FirstCommandIsUp()
+        public void SendMoveCommand_Up_FirstCommandIsUp()
         {
-            cmd.Up(0);
+            cmd.SendMoveCommand(launcher.Up, 0);
             Assert.AreEqual(launcher.Up, device.ReceivedCommands[0]);
         }
 
         [Test]
-        public void Up_SecondCommandIsStop()
+        public void SendMoveCommand_Up_SecondCommandIsStop()
         {
-            cmd.Up(0);
+            cmd.SendMoveCommand(launcher.Up, 0);
             Assert.AreEqual(launcher.Stop, device.ReceivedCommands[1]);
         }
     }
