@@ -9,6 +9,16 @@ namespace MissileSharp.Tests
     /// </remarks>
     class StubMissileLauncher : ThunderMissileLauncher, ILauncherModel
     {
+        public new int WaitBeforeFire
+        {
+            get { return 0; }
+        }
+
+        public new int WaitAfterFire
+        {
+            get { return 0; }
+        }
+
         public new byte[] CreateCommand(byte command)
         {
             // return ONLY the command, so checking afterwards is easier

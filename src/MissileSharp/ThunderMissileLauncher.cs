@@ -47,6 +47,16 @@ namespace MissileSharp
             get { return 16; }
         }
 
+        public int MinNumberOfShots
+        {
+            get { return 1; }
+        }
+
+        public int MaxNumberOfShots
+        {
+            get { return 4; }
+        }
+
         public int ResetTimeLeft
         {
             get { return 6000; }

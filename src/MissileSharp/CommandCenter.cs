@@ -139,17 +139,17 @@ namespace MissileSharp
         /// <summary>
         /// Fire X missiles
         /// </summary>
-        /// <param name="numberOfShots">Number of missiles to fire (1-4)</param>
+        /// <param name="numberOfShots">Number of missiles to fire</param>
         public CommandCenter Fire(int numberOfShots)
         {
-            if (numberOfShots < 1)
+            if (numberOfShots < launcher.MinNumberOfShots)
             {
-                numberOfShots = 1;
+                numberOfShots = launcher.MinNumberOfShots;
             }
 
-            if (numberOfShots > 4)
+            if (numberOfShots > launcher.MaxNumberOfShots)
             {
-                numberOfShots = 4; 
+                numberOfShots = launcher.MaxNumberOfShots; 
             }
 
             Thread.Sleep(launcher.WaitBeforeFire);

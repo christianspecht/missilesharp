@@ -47,6 +47,16 @@ namespace MissileSharp
         byte Fire { get; }
 
         /// <summary>
+        /// Minimum number of shots possible (usually 1)
+        /// </summary>
+        int MinNumberOfShots { get; }
+
+        /// <summary>
+        /// Maximum number of shots possible
+        /// </summary>
+        int MaxNumberOfShots { get; }
+
+        /// <summary>
         /// Reset position: move X milliseconds left
         /// </summary>
         int ResetTimeLeft { get; }
