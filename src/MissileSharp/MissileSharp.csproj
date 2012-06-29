@@ -52,6 +52,7 @@
     <Compile Include="ILauncherModel.cs" />
     <Compile Include="CommandCenter.cs" />
     <Compile Include="LauncherCommand.cs" />
+    <Compile Include="CommandSetList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ThunderMissileLauncher.cs">
       <SubType>Code</SubType>

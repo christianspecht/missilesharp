@@ -49,6 +49,9 @@
     </Compile>
     <Compile Include="CommandCenterTests.cs" />
     <Compile Include="ConfigReaderTests.cs" />
+    <Compile Include="CommandSetListTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="LauncherCommandTests.cs" />
     <Compile Include="MockHidDevice.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
