@@ -1,4 +1,5 @@
-﻿
+﻿using System;
+
 namespace MissileSharp
 {
     /// <summary>
@@ -15,6 +16,16 @@ namespace MissileSharp
         /// <param name="value"></param>
         public LauncherCommand(string command, int value)
         {
+            if (string.IsNullOrEmpty(command))
+            {
+                throw new InvalidOperationException("command is empty");
+            }
+
+            if (value < 0)
+            {
+                throw new InvalidOperationException("value must be equal or greater than zero");
+            }
+
             this.Command = command;
             this.Value = value;
         }
