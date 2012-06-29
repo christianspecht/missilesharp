@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyVersion.cs" />
+    <Compile Include="ConfigReader.cs" />
     <Compile Include="HidLibraryDevice.cs" />
     <Compile Include="IHidDevice.cs" />
     <Compile Include="ILauncherModel.cs" />
