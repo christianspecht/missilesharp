@@ -17,6 +17,7 @@ namespace MissileSharp.Demo
             Console.WriteLine();
             Console.WriteLine("1 : The commands are executed directly");
             Console.WriteLine("2 : A pre-programmed sequence of commands is executed");
+            Console.WriteLine("3 : same as 2, but the commands are loaded from a config file");
             Console.WriteLine();
             string choice = Console.ReadLine();
             Console.WriteLine();
@@ -54,6 +55,17 @@ namespace MissileSharp.Demo
                             launcher.RunCommandSet(commands);
 
                             break;
+
+                        case "3":
+
+                            if (launcher.LoadCommandSets("settings.txt"))
+                            {
+                                // upper/lower case doesn't matter - "steve" or "sTeVe" would work as well
+                                launcher.RunCommandSet("Steve");
+                            }
+
+                            break;
+
                     }
                 }
             }

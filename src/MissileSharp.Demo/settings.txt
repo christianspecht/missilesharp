@@ -1,0 +1,10 @@
+﻿[Bill]
+reset,0
+up,1000
+fire,4
+
+[Steve]
+reset,0
+right,1000
+up,500
+fire,2

@@ -11,6 +11,7 @@ namespace MissileSharp
     {
         IHidDevice device;
         ILauncherModel launcher;
+        CommandSetList sets;
 
         /// <summary>
         /// Initializes a new instance of the CommandCenter class using the specified missile launcher model.
@@ -30,6 +31,7 @@ namespace MissileSharp
         {
             this.launcher = launcher;
             this.device = device;
+            this.sets = new CommandSetList();
 
             device.Initialize(launcher.VendorId, launcher.DeviceId);
         }
@@ -84,6 +86,34 @@ namespace MissileSharp
             {
                 RunCommand(cmd);
             }
+        }
+
+        /// <summary>
+        /// Runs a list of LauncherCommands by name (commands must have been loaded before using LoadCommandSets)
+        /// </summary>
+        /// <param name="commandSetName">The name of the command set to run</param>
+        public void RunCommandSet(string commandSetName)
+        {
+            if (sets.CountSets() == 0)
+            {
+                throw new InvalidOperationException("No command sets available. You need to load them first using the LoadCommandSets method!");
+            }
+
+            if (sets.ContainsCommandSet(commandSetName))
+            {
+                RunCommandSet(sets.GetCommandSet(commandSetName));
+            }
+        }
+
+        /// <summary>
+        /// Loads a list of command sets from a config file (execute command sets with RunCommandSet)
+        /// </summary>
+        /// <param name="pathToConfigFile">Complete path to the config file</param>
+        /// <returns>True if at least one command set was loaded</returns>
+        public bool LoadCommandSets(string pathToConfigFile)
+        {
+            sets = ConfigReader.Read(pathToConfigFile);
+            return (sets.CountSets() > 0);
         }
 
         /// <summary>

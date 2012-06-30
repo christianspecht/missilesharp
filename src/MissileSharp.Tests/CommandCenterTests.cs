@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 
 namespace MissileSharp.Tests
 {
@@ -112,6 +113,12 @@ namespace MissileSharp.Tests
         {
             cmd.RunCommand(new LauncherCommand("fire", 0));
             Assert.AreEqual(launcher.Fire, device.ReceivedCommands[0]);
+        }
+
+        [Test]
+        public void RunCommandSetString_NoSetsLoaded_ThrowsException()
+        {
+            Assert.Throws<InvalidOperationException>(() => cmd.RunCommandSet("invalid"));
         }
     }
 }
