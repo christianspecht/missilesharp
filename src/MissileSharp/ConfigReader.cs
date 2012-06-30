@@ -36,7 +36,7 @@ namespace MissileSharp
         {
             var commands = new CommandSetList();
 
-            string key = "";
+            string key = string.Empty;
 
             foreach (string line in configFileLines)
             {
@@ -44,19 +44,29 @@ namespace MissileSharp
                 {
                     key = line.Substring(1, line.Length - 2).ToLower();
                 }
-                else if (line.Length > 0)
+                else if (line.Length > 0) // ignore empty lines
                 {
+                    if (string.IsNullOrEmpty(key))
+                    {
+                        throw new InvalidOperationException("The first line in the config must be a command set name. There can be no commands before the first command set name!");
+                    }
+
                     var items = line.Split(',');
 
-                    if (items.Length == 2)
+                    if (items.Length != 2)
                     {
-                        int value;
-
-                        if (int.TryParse(items[1], out value))
-                        {
-                            commands.Add(key, items[0], value);
-                        }
+                        throw new InvalidOperationException("This line in the config file does not contain exactly two items: " + line);
                     }
+
+                    int value;
+
+                    if (!int.TryParse(items[1], out value))
+                    {
+                        throw new InvalidOperationException("The second item in this line in the config file must be numeric: " + line);
+                    }
+
+                    commands.Add(key, items[0], value);
+                    
                 }
             }
             return commands;

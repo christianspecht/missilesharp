@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using NUnit.Framework;
 
 namespace MissileSharp.Tests
@@ -6,7 +7,7 @@ namespace MissileSharp.Tests
     [TestFixture]
     public class ConfigReaderTests
     {
-        // get a valid config file (this is not in [SetUp] because there will be more tests with other config files)
+        // get a valid config file (this is not in [SetUp] because there are tests with other config files)
         private CommandSetList GetValidConfig()
         {
             var conf = new List<string>();
@@ -103,6 +104,46 @@ namespace MissileSharp.Tests
         {
             var config = GetValidConfig();
             Assert.AreEqual(2, config.GetCommandSet("name2")[1].Value);
+        }
+
+        [Test]
+        public void Read_InvalidConfigNoCommands_NothingIsSaved()
+        {
+            var conf = new List<string>();
+            conf.Add("[name]");
+            var config = GetConfigFromList(conf);
+
+            Assert.AreEqual(0, config.CountSets());
+        }
+
+        [Test]
+        public void Read_InvalidConfigCommandBeforeFirstCommandSetName_ThrowsException()
+        {
+            var conf = new List<string>();
+            conf.Add("up,1");
+            conf.Add("[name]");
+            
+            Assert.Throws<InvalidOperationException>(()=> GetConfigFromList(conf));
+        }
+
+        [Test]
+        public void Read_InvalidConfigWrongNumberOfCommandParameters_ThrowsException()
+        {
+            var conf = new List<string>();            
+            conf.Add("[name]");
+            conf.Add("up,1,2");
+
+            Assert.Throws<InvalidOperationException>(() => GetConfigFromList(conf));
+        }
+
+        [Test]
+        public void Read_InvalidConfigSecondParameterIsNotNumeric_ThrowsException()
+        {
+            var conf = new List<string>();
+            conf.Add("[name]");
+            conf.Add("up,invalid");
+
+            Assert.Throws<InvalidOperationException>(() => GetConfigFromList(conf));
         }
     }
 }
