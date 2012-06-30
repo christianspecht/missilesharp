@@ -114,5 +114,18 @@ namespace MissileSharp.Tests
             list.Add("name", "cmd", 1);
             Assert.AreEqual(1, list.GetCommandSet("name")[0].Value);
         }
+
+        [Test]
+        public void ContainsCommandSet_ExistingCommandSet_ReturnsTrue()
+        {
+            list.Add("name", "cmd", 1);
+            Assert.True(list.ContainsCommandSet("name"));            
+        }
+
+        [Test]
+        public void ContainsCommandSet_NonExistingCommandSet_ReturnsFalse()
+        {
+            Assert.False(list.ContainsCommandSet("invalid"));
+        }
     }
 }

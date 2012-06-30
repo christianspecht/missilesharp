@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace MissileSharp
 {
@@ -19,7 +20,7 @@ namespace MissileSharp
         }
 
         /// <summary>
-        /// Add a new item to a list of LauncherCommands (dictionary entry will be created if it doesn't exist)
+        /// Add a new item to a command set (command set will be created if it doesn't exist)
         /// </summary>
         /// <param name="commandSetName">The name of the command set</param>
         /// <param name="command">The actual command set (a list of commands)</param>
@@ -44,7 +45,7 @@ namespace MissileSharp
         }
 
         /// <summary>
-        /// Add a new item to a list of LauncherCommands (dictionary entry will be created if it doesn't exist)
+        /// Add a new item to a command set (command set will be created if it doesn't exist)
         /// </summary>
         /// <param name="commandSetName">The name of the command set</param>
         /// <param name="command">The actual command ("left", "fire" etc.)</param>
@@ -58,7 +59,7 @@ namespace MissileSharp
         /// Get a command set (=list of LauncherCommands) by name
         /// </summary>
         /// <param name="commandSetName">The name to search for</param>
-        /// <returns>A list of command sets (empty if the name is not found)</returns>
+        /// <returns>A list of commands (empty if the name is not found)</returns>
         public List<LauncherCommand> GetCommandSet(string commandSetName)
         {
             var list = new List<LauncherCommand>();
@@ -87,6 +88,17 @@ namespace MissileSharp
         public int CountCommands(string commandSetName)
         {
             return GetCommandSet(commandSetName).Count;
+        }
+
+        /// <summary>
+        /// Checks whether a command set with the given name exists
+        /// </summary>
+        /// <param name="commandSetName">The name of the command set</param>
+        /// <returns>True if it exists, False if not</returns>
+        public bool ContainsCommandSet(string commandSetName)
+        {
+            var set = GetCommandSet(commandSetName);
+            return set.Any();
         }
     }
 }
