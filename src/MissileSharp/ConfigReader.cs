@@ -14,9 +14,9 @@ namespace MissileSharp
         /// </summary>
         /// <param name="configFile">The config file to load</param>
         /// <returns>A Dictionary of command sets</returns>
-        public static Dictionary<string, List<LauncherCommand>> Read(string configFile)
+        public static CommandSetList Read(string configFile)
         {
-            var commands = new Dictionary<string, List<LauncherCommand>>();
+            var commands = new CommandSetList();
 
             if (File.Exists(configFile))
             {
@@ -32,9 +32,9 @@ namespace MissileSharp
         /// </summary>
         /// <param name="configFileLines">The config file lines</param>
         /// <returns>A Dictionary of command sets</returns>
-        public static Dictionary<string, List<LauncherCommand>> Read(string[] configFileLines)
+        public static CommandSetList Read(string[] configFileLines)
         {
-            var commands = new Dictionary<string, List<LauncherCommand>>();
+            var commands = new CommandSetList();
 
             string key = "";
 
@@ -43,7 +43,6 @@ namespace MissileSharp
                 if (line.StartsWith("[") && line.EndsWith("]"))
                 {
                     key = line.Substring(1, line.Length - 2).ToLower();
-                    commands.Add(key, new List<LauncherCommand>());
                 }
                 else if (line.Length > 0)
                 {
@@ -55,7 +54,7 @@ namespace MissileSharp
 
                         if (int.TryParse(items[1], out value))
                         {
-                            commands[key].Add(new LauncherCommand(items[0], value));
+                            commands.Add(key, items[0], value);
                         }
                     }
                 }
