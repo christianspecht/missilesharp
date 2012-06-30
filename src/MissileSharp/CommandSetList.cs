@@ -36,12 +36,12 @@ namespace MissileSharp
                 throw new InvalidOperationException("command set is empty");
             }
 
-            if (!dict.ContainsKey(commandSetName))
+            if (!dict.ContainsKey(commandSetName.ToLower()))
             {
-                dict.Add(commandSetName, new List<LauncherCommand>());
+                dict.Add(commandSetName.ToLower(), new List<LauncherCommand>());
             }
 
-            dict[commandSetName].Add(command);
+            dict[commandSetName.ToLower()].Add(command);
         }
 
         /// <summary>
@@ -64,9 +64,9 @@ namespace MissileSharp
         {
             var list = new List<LauncherCommand>();
 
-            if (dict.ContainsKey(commandSetName))
+            if (dict.ContainsKey(commandSetName.ToLower()))
             {
-                list = dict[commandSetName];
+                list = dict[commandSetName.ToLower()];
             }
 
             return list;

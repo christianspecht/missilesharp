@@ -58,10 +58,24 @@ namespace MissileSharp.Tests
         {
             list.Add("name", "cmd1", 1);
             list.Add("name", "cmd2", 1);
-
             Assert.AreEqual(2, list.GetCommandSet("name").Count);
         }
-        
+
+        [Test]
+        public void Add_CommandSetWithUpperCase_IsSavedInLowerCase()
+        {
+            list.Add("NAME", "cmd", 1);
+            Assert.That(list.ContainsCommandSet("name"));
+        }
+
+        [Test]
+        public void Add_SameCommandSetInUpperAndLowerCase_IsSavedInOneCommandSet()
+        {
+            list.Add("NAME", "cmd", 1);
+            list.Add("name", "cmd", 1);
+            Assert.AreEqual(2, list.CountCommands("name"));
+        }
+
         [Test]
         public void CountSets_EmptyList_ReturnsZero()
         {
@@ -86,6 +100,13 @@ namespace MissileSharp.Tests
         {
             list.Add("name","cmd",1);
             Assert.AreEqual(1, list.CountCommands("name"));
+        }
+
+        [Test]
+        public void CountCommands_CommandSetWithUpperCase_ReturnsCorrectNumberOfItems()
+        {
+            list.Add("name", "cmd", 1);
+            Assert.AreEqual(1, list.CountCommands("NAME"));
         }
 
         [Test]
@@ -116,6 +137,13 @@ namespace MissileSharp.Tests
         }
 
         [Test]
+        public void GetCommandSet_CommandSetWithUpperCase_IsFound()
+        {
+            list.Add("name", "cmd", 1);
+            Assert.AreEqual(1, list.GetCommandSet("NAME").Count);
+        }
+
+        [Test]
         public void ContainsCommandSet_ExistingCommandSet_ReturnsTrue()
         {
             list.Add("name", "cmd", 1);
@@ -126,6 +154,13 @@ namespace MissileSharp.Tests
         public void ContainsCommandSet_NonExistingCommandSet_ReturnsFalse()
         {
             Assert.False(list.ContainsCommandSet("invalid"));
+        }
+
+        [Test]
+        public void ContainsCommandSet_CommandSetWithUpperCase_ReturnsTrue()
+        {
+            list.Add("name", "cmd", 1);
+            Assert.True(list.ContainsCommandSet("NAME"));
         }
     }
 }
