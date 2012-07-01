@@ -9,9 +9,10 @@ For now it supports only one model, the [Dream Cheeky Thunder](http://www.dreamc
 
 ## Links
 
-- [Main Project page on Bitbucket](https://bitbucket.org/christianspecht/missilesharp)
 - [Download page](https://bitbucket.org/christianspecht/missilesharp/downloads)
 - [NuGet gallery](https://nuget.org/packages/MissileSharp)
+- [Found a bug?](https://bitbucket.org/christianspecht/missilesharp/issues/new)
+- [Main project page on Bitbucket](https://bitbucket.org/christianspecht/missilesharp)
 
 ---
 
@@ -28,20 +29,72 @@ Just connect the device to your machine, and Windows should automatically recogn
 
 ## How to use
 
-The main class of MissileSharp is the `CommandCenter` class. It has only one constructor, which expects a parameter of the type `ILauncherModel` - these are the different missile launcher models.  
+The main class of MissileSharp is the `CommandCenter` class.  
+It has only one constructor, which expects a parameter of the type `ILauncherModel` - these are the settings for the different missile launcher models.  
 *(As MissileSharp only supports one model at the moment, you can only pass a* `ThunderMissileLauncher` *for now)*
 
-When you have created an instance of the `CommandCenter` class, you can use its methods to control the missile launcher.  
-There are only three different types of commands:
+#### Simple example
 
-1. Move (`Up` / `Down` / `Left` / `Right`)  
-Move the launcher in the specified direction. One parameter to specify the duration in milliseconds.
+    var launcher = new CommandCenter(new ThunderMissileLauncher());
+
+There are three different types of commands:
+
+1. Move (`Up`, `Down`, `Left`, `Right`)  
+Move the launcher in the specified direction
 2. `Reset`  
-Reset the position (move to bottom left)
+Reset to known position (move to bottom left)
 3. `Fire`  
-Fire up to four missiles. One parameter to specify the number of shots.
+Fire some missiles
 
-MissileSharp comes with a demo console application - [see the code for a complete example](https://bitbucket.org/christianspecht/missilesharp/src/tip/src/MissileSharp.Demo/Program.cs).
+You can use these commands as methods of the `CommandCenter` class:
+	
+	launcher.Reset();   	// reset to bottom left
+	launcher.Right(1000);   // turn right 1000 milliseconds
+	launcher.Up(500);   	// move up 500 milliseconds
+	launcher.Fire(2);		// fire 2 missiles
+
+This is also available as a fluent interface:
+
+    launcher.Reset().Right(1000).Up(500).Fire(2);
+
+#### Executing sequences of commands
+
+Instead of directly calling the methods, you can also pass a complete sequence of commands at once as an `IEnumerable<LauncherCommand>`.  
+A `LauncherCommand` consists of a command string (e.g. `up` or `fire` - exactly the same commands as explained above) and a numeric parameter (for either the duration or the number of shots).
+
+The following code does the same as the previous example, but uses a `List<LauncherCommand>` instead of directly calling `Up`, `Fire` etc.:
+
+	var commands = new List<LauncherCommand>();
+	commands.Add(new LauncherCommand("reset", 0));
+	commands.Add(new LauncherCommand("right", 1000));
+	commands.Add(new LauncherCommand("up", 500));
+	commands.Add(new LauncherCommand("fire", 2));
+
+	launcher.RunCommandSet(commands);
+
+#### Config files
+
+MissileSharp supports loading command sets from a config file as well.  
+A config file with the commands from the examples above would look like this:
+	
+	[Steve]
+	reset,0
+	right,1000
+	up,500
+	fire,2
+
+You can save several of these command sets in the same file, each one under its own name (in this case, "Steve").
+
+First, you have to load the file once:
+
+	launcher.LoadCommandSets("settings.txt");
+
+After that, you can execute any of the command sets by referring to the name:
+	
+	launcher.RunCommandSet("Steve");   // shoot Steve
+
+If you want to see a complete example, there is a demo console application in the code (not in the releases).  
+Look at [the code](https://bitbucket.org/christianspecht/missilesharp/src/tip/src/MissileSharp.Demo/Program.cs) and [the config file](https://bitbucket.org/christianspecht/missilesharp/src/tip/src/MissileSharp.Demo/settings.txt).
 
 ---
 
