@@ -68,7 +68,7 @@ namespace MissileSharp.Tests
         public void Read_ValidConfig_Name1TheCommandIsCorrect()
         {
             var config = GetValidConfig();
-            Assert.AreEqual("up", config.GetCommandSet("name1")[0].Command);
+            Assert.AreEqual(Command.Up, config.GetCommandSet("name1")[0].Command);
         }
 
         [Test]
@@ -82,7 +82,7 @@ namespace MissileSharp.Tests
         public void Read_ValidConfig_Name2TheFirstCommandIsCorrect()
         {
             var config = GetValidConfig();
-            Assert.AreEqual("right", config.GetCommandSet("name2")[0].Command);
+            Assert.AreEqual(Command.Right, config.GetCommandSet("name2")[0].Command);
         }
 
         [Test]
@@ -96,7 +96,7 @@ namespace MissileSharp.Tests
         public void Read_ValidConfig_Name2TheSecondCommandIsCorrect()
         {
             var config = GetValidConfig();
-            Assert.AreEqual("fire", config.GetCommandSet("name2")[1].Command);
+            Assert.AreEqual(Command.Fire, config.GetCommandSet("name2")[1].Command);
         }
 
         [Test]

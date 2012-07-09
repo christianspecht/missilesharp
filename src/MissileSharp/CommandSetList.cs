@@ -56,6 +56,17 @@ namespace MissileSharp
         }
 
         /// <summary>
+        /// Add a new item to a command set (command set will be created if it doesn't exist)
+        /// </summary>
+        /// <param name="commandSetName">The name of the command set</param>
+        /// <param name="command">The actual command</param>
+        /// <param name="value">Numeric value for the command (duration/number of shots)</param>
+        public void Add(string commandSetName, Command command, int value)
+        {
+            Add(commandSetName, new LauncherCommand(command, value));
+        }
+
+        /// <summary>
         /// Get a command set (=list of LauncherCommands) by name
         /// </summary>
         /// <param name="commandSetName">The name to search for</param>

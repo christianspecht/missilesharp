@@ -76,42 +76,35 @@ namespace MissileSharp.Tests
         [Test]
         public void RunCommand_Up_SendsUpCommand()
         {
-            cmd.RunCommand(new LauncherCommand("up", 0));
+            cmd.RunCommand(new LauncherCommand(Command.Up, 0));
             Assert.AreEqual(launcher.Up, device.ReceivedCommands[0]);
         }
 
         [Test]
         public void RunCommand_Down_SendsDownCommand()
         {
-            cmd.RunCommand(new LauncherCommand("down", 0));
+            cmd.RunCommand(new LauncherCommand(Command.Down, 0));
             Assert.AreEqual(launcher.Down, device.ReceivedCommands[0]);
         }
 
         [Test]
         public void RunCommand_Left_SendsLeftCommand()
         {
-            cmd.RunCommand(new LauncherCommand("left", 0));
+            cmd.RunCommand(new LauncherCommand(Command.Left, 0));
             Assert.AreEqual(launcher.Left, device.ReceivedCommands[0]);
         }
 
         [Test]
         public void RunCommand_Right_SendsRightCommand()
         {
-            cmd.RunCommand(new LauncherCommand("right", 0));
+            cmd.RunCommand(new LauncherCommand(Command.Right, 0));
             Assert.AreEqual(launcher.Right, device.ReceivedCommands[0]);
-        }
-
-        [Test]
-        public void RunCommand_InvalidValue_SendsNoCommand()
-        {
-            cmd.RunCommand(new LauncherCommand("unknown", 0));
-            Assert.AreEqual(0, device.ReceivedCommands.Count);
         }
 
         [Test]
         public void RunCommand_Fire_SendsFireCommand()
         {
-            cmd.RunCommand(new LauncherCommand("fire", 0));
+            cmd.RunCommand(new LauncherCommand(Command.Fire, 0));
             Assert.AreEqual(launcher.Fire, device.ReceivedCommands[0]);
         }
 

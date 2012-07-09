@@ -21,22 +21,35 @@ namespace MissileSharp.Tests
         [Test]
         public void ValueIsSmallerThanZero_ThrowsException()
         {
-            Assert.Throws<InvalidOperationException>(() => new LauncherCommand("cmd", -1));
+            Assert.Throws<InvalidOperationException>(() => new LauncherCommand(Command.Up, -1));
         }
 
         [Test]
-        public void ConstructorParametersAreSavedInProperties()
+        public void ValidCommandAsEnum_IsSavedWithValue()
         {
-            var cmd = new LauncherCommand("up", 100);
-            Assert.AreEqual("up", cmd.Command);
+            var cmd = new LauncherCommand(Command.Up, 100);
+            Assert.AreEqual(Command.Up, cmd.Command);
             Assert.AreEqual(100, cmd.Value);
         }
 
         [Test]
-        public void CommandIsAlwaysSavedInLowerCase()
+        public void CommandAsString_IsConvertedToEnum()
         {
-            var cmd = new LauncherCommand("UP",0);
-            Assert.AreEqual("up", cmd.Command);
-        } 
+            var cmd = new LauncherCommand("up", 100);
+            Assert.AreEqual(Command.Up, cmd.Command);
+        }
+
+        [Test]
+        public void CommandAsUppercaseString_IsConvertedToEnum()
+        {
+            var cmd = new LauncherCommand("UP", 100);
+            Assert.AreEqual(Command.Up, cmd.Command);
+        }
+
+        [Test]
+        public void InvalidCommandAsString_ThrowsException()
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() => new LauncherCommand("invalid", 100));
+        }
     }
 }

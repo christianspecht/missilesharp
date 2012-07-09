@@ -55,22 +55,22 @@ namespace MissileSharp
         {
             switch (command.Command)
             {
-                case "up":
+                case Command.Up:
                     Up(command.Value);
                     break;
-                case "down":
+                case Command.Down:
                     Down(command.Value);
                     break;
-                case "left":
+                case Command.Left:
                     Left(command.Value);
                     break;
-                case "right":
+                case Command.Right:
                     Right(command.Value);
                     break;
-                case "reset":
+                case Command.Reset:
                     Reset();
                     break;
-                case "fire":
+                case Command.Fire:
                     Fire(command.Value);
                     break;
             }

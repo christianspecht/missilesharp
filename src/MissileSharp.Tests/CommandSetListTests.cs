@@ -17,13 +17,13 @@ namespace MissileSharp.Tests
         [Test]
         public void Add_CommandSetNameIsEmpty_ThrowsException()
         {
-            Assert.Throws<InvalidOperationException>(() => list.Add(string.Empty, "cmd", 1));
+            Assert.Throws<InvalidOperationException>(() => list.Add(string.Empty, Command.Up, 1));
         }
 
         [Test]
         public void Add_CommandSetNameIsNull_ThrowsException()
         {
-            Assert.Throws<InvalidOperationException>(() => list.Add(null, "cmd", 1));
+            Assert.Throws<InvalidOperationException>(() => list.Add(null, Command.Up, 1));
         }
 
         [Test]
@@ -35,44 +35,44 @@ namespace MissileSharp.Tests
         [Test]
         public void Add_CommandIsValid_ListContainsOneItem()
         {
-            list.Add("name", "cmd", 1);
+            list.Add("name", Command.Up, 1);
             Assert.AreEqual(1, list.GetCommandSet("name").Count);
         }
         
         [Test]
         public void Add_CommandIsValid_SavedCommandIsCorrect()
         {
-            list.Add("name", "cmd", 1);
-            Assert.AreEqual("cmd", list.GetCommandSet("name")[0].Command);
+            list.Add("name", Command.Up, 1);
+            Assert.AreEqual(Command.Up, list.GetCommandSet("name")[0].Command);
         }
         
         [Test]
         public void Add_CommandIsValid_SavedValueIsCorrect()
         {
-            list.Add("name", "cmd", 1);
+            list.Add("name", Command.Up, 1);
             Assert.AreEqual(1, list.GetCommandSet("name")[0].Value);
         }
         
         [Test]
         public void Add_TwoValidCommands_ListContainsTwoItems()
         {
-            list.Add("name", "cmd1", 1);
-            list.Add("name", "cmd2", 1);
+            list.Add("name", Command.Up, 1);
+            list.Add("name", Command.Up, 1);
             Assert.AreEqual(2, list.GetCommandSet("name").Count);
         }
 
         [Test]
         public void Add_CommandSetWithUpperCase_IsSavedInLowerCase()
         {
-            list.Add("NAME", "cmd", 1);
+            list.Add("NAME", Command.Up, 1);
             Assert.That(list.ContainsCommandSet("name"));
         }
 
         [Test]
         public void Add_SameCommandSetInUpperAndLowerCase_IsSavedInOneCommandSet()
         {
-            list.Add("NAME", "cmd", 1);
-            list.Add("name", "cmd", 1);
+            list.Add("NAME", Command.Up, 1);
+            list.Add("name", Command.Up, 1);
             Assert.AreEqual(2, list.CountCommands("name"));
         }
 
@@ -85,7 +85,7 @@ namespace MissileSharp.Tests
         [Test]
         public void CountSets_ListWithOneItem_ReturnsOne()
         {
-            list.Add("name", "cmd", 1);
+            list.Add("name", Command.Up, 1);
             Assert.AreEqual(1, list.CountSets());
         }
 
@@ -98,14 +98,14 @@ namespace MissileSharp.Tests
         [Test]
         public void CountCommands_ExistingCommandSet_ReturnsCorrectNumberOfItems()
         {
-            list.Add("name","cmd",1);
+            list.Add("name", Command.Up, 1);
             Assert.AreEqual(1, list.CountCommands("name"));
         }
 
         [Test]
         public void CountCommands_CommandSetWithUpperCase_ReturnsCorrectNumberOfItems()
         {
-            list.Add("name", "cmd", 1);
+            list.Add("name", Command.Up, 1);
             Assert.AreEqual(1, list.CountCommands("NAME"));
         }
 
@@ -118,35 +118,35 @@ namespace MissileSharp.Tests
         [Test]
         public void GetCommandSet_ExistingCommandSet_ReturnsListWithCorrectNumberOfItems()
         {
-            list.Add("name", "cmd", 1);
+            list.Add("name", Command.Up, 1);
             Assert.AreEqual(1, list.GetCommandSet("name").Count);
         }
 
         [Test]
         public void GetCommandSet_ExistingCommandSet_ReturnsValidCommand()
         {
-            list.Add("name", "cmd", 1);
-            Assert.AreEqual("cmd", list.GetCommandSet("name")[0].Command);
+            list.Add("name", Command.Up, 1);
+            Assert.AreEqual(Command.Up, list.GetCommandSet("name")[0].Command);
         }
 
         [Test]
         public void GetCommandSet_ExistingCommandSet_ReturnsValidValue()
         {
-            list.Add("name", "cmd", 1);
+            list.Add("name", Command.Up, 1);
             Assert.AreEqual(1, list.GetCommandSet("name")[0].Value);
         }
 
         [Test]
         public void GetCommandSet_CommandSetWithUpperCase_IsFound()
         {
-            list.Add("name", "cmd", 1);
+            list.Add("name", Command.Up, 1);
             Assert.AreEqual(1, list.GetCommandSet("NAME").Count);
         }
 
         [Test]
         public void ContainsCommandSet_ExistingCommandSet_ReturnsTrue()
         {
-            list.Add("name", "cmd", 1);
+            list.Add("name", Command.Up, 1);
             Assert.True(list.ContainsCommandSet("name"));            
         }
 
@@ -159,7 +159,7 @@ namespace MissileSharp.Tests
         [Test]
         public void ContainsCommandSet_CommandSetWithUpperCase_ReturnsTrue()
         {
-            list.Add("name", "cmd", 1);
+            list.Add("name", Command.Up, 1);
             Assert.True(list.ContainsCommandSet("NAME"));
         }
     }
