@@ -43,6 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\MissileSharp\AssemblyInfoGlobal.cs">
+      <Link>AssemblyInfoGlobal.cs</Link>
+    </Compile>
     <Compile Include="..\MissileSharp\AssemblyVersion.cs">
       <Link>AssemblyVersion.cs</Link>
     </Compile>

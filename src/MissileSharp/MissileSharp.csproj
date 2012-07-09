@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AssemblyInfoGlobal.cs" />
     <Compile Include="AssemblyVersion.cs" />
     <Compile Include="Command.cs" />
     <Compile Include="ConfigReader.cs" />

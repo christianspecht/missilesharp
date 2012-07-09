@@ -7,12 +7,6 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 [assembly: AssemblyTitle("MissileSharp")]
 [assembly: AssemblyDescription(".NET library to control an USB Missile Launcher")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("http://christianspecht.de/missilesharp/")]
-[assembly: AssemblyProduct("MissileSharp")]
-[assembly: AssemblyCopyright("© Christian Specht 2012")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
 [assembly: InternalsVisibleTo("MissileSharp.Tests")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 

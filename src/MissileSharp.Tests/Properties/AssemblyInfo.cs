@@ -7,12 +7,6 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 [assembly: AssemblyTitle("MissileSharp.Tests")]
 [assembly: AssemblyDescription("Unit tests for MissileSharp")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("http://christianspecht.de/missilesharp/")]
-[assembly: AssemblyProduct("MissileSharp.Tests")]
-[assembly: AssemblyCopyright("© Christian Specht 2012")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
 // to COM components.  If you need to access a type in this assembly from 
