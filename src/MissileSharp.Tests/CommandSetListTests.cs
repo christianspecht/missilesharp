@@ -17,19 +17,19 @@ namespace MissileSharp.Tests
         [Test]
         public void Add_CommandSetNameIsEmpty_ThrowsException()
         {
-            Assert.Throws<InvalidOperationException>(() => list.Add(string.Empty, Command.Up, 1));
+            Assert.Throws<ArgumentNullException>(() => list.Add(string.Empty, Command.Up, 1));
         }
 
         [Test]
         public void Add_CommandSetNameIsNull_ThrowsException()
         {
-            Assert.Throws<InvalidOperationException>(() => list.Add(null, Command.Up, 1));
+            Assert.Throws<ArgumentNullException>(() => list.Add(null, Command.Up, 1));
         }
 
         [Test]
         public void Add_CommandIsNull_ThrowsException()
         {
-            Assert.Throws<InvalidOperationException>(() => list.Add("name", null));
+            Assert.Throws<ArgumentNullException>(() => list.Add("name", null));
         }
 
         [Test]

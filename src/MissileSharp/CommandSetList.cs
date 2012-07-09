@@ -23,17 +23,17 @@ namespace MissileSharp
         /// Add a new item to a command set (command set will be created if it doesn't exist)
         /// </summary>
         /// <param name="commandSetName">The name of the command set</param>
-        /// <param name="command">The actual command set (a list of commands)</param>
+        /// <param name="command">The actual command</param>
         public void Add(string commandSetName, LauncherCommand command)
         {
             if (string.IsNullOrEmpty(commandSetName))
             {
-                throw new InvalidOperationException("command set name is empty");
+                throw new ArgumentNullException("command set name is empty");
             }
 
             if (command == null)
             {
-                throw new InvalidOperationException("command set is empty");
+                throw new ArgumentNullException("command is empty");
             }
 
             if (!dict.ContainsKey(commandSetName.ToLower()))

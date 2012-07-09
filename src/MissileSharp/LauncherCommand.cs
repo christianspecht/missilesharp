@@ -16,12 +16,12 @@ namespace MissileSharp
         {
             if (string.IsNullOrEmpty(command))
             {
-                throw new InvalidOperationException("command is empty");
+                throw new ArgumentNullException("command is empty");
             }
 
             if (value < 0)
             {
-                throw new InvalidOperationException("value must be equal or greater than zero");
+                throw new ArgumentOutOfRangeException("value must be equal or greater than zero");
             }
 
             switch (command.ToLower())
@@ -60,7 +60,7 @@ namespace MissileSharp
         {
             if (value < 0)
             {
-                throw new InvalidOperationException("value must be equal or greater than zero");
+                throw new ArgumentOutOfRangeException("value must be equal or greater than zero");
             }
 
             this.Command = command;

@@ -9,19 +9,19 @@ namespace MissileSharp.Tests
         [Test]
         public void CommandIsEmpty_ThrowsException()
         {
-            Assert.Throws<InvalidOperationException>(()=> new LauncherCommand(string.Empty, 0));
+            Assert.Throws<ArgumentNullException>(() => new LauncherCommand(string.Empty, 0));
         }
 
         [Test]
         public void CommandIsNull_ThrowsException()
         {
-            Assert.Throws<InvalidOperationException>(() => new LauncherCommand(null, 0));
+            Assert.Throws<ArgumentNullException>(() => new LauncherCommand(null, 0));
         }
 
         [Test]
         public void ValueIsSmallerThanZero_ThrowsException()
         {
-            Assert.Throws<InvalidOperationException>(() => new LauncherCommand(Command.Up, -1));
+            Assert.Throws<ArgumentOutOfRangeException>(() => new LauncherCommand(Command.Up, -1));
         }
 
         [Test]
