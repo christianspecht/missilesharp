@@ -144,6 +144,20 @@ namespace MissileSharp.Tests
         }
 
         [Test]
+        public void GetCommandSetNames_ListWithOneItem_ReturnsOne()
+        {
+            list.Add("name", Command.Up, 1);
+            Assert.AreEqual(1, list.GetCommandSetNames().Count);
+        }
+
+        [Test]
+        public void GetCommandSetNames_ListWithOneItem_ReturnsCorrectName()
+        {
+            list.Add("name", Command.Up, 1);
+            Assert.AreEqual("name", list.GetCommandSetNames()[0]);
+        }
+
+        [Test]
         public void ContainsCommandSet_ExistingCommandSet_ReturnsTrue()
         {
             list.Add("name", Command.Up, 1);

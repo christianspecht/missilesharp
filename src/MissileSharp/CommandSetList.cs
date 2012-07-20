@@ -84,6 +84,15 @@ namespace MissileSharp
         }
 
         /// <summary>
+        /// Gets the names of all available command sets
+        /// </summary>
+        /// <returns>A list of command set names</returns>
+        public List<string> GetCommandSetNames()
+        {
+            return new List<string>(dict.Keys);
+        }
+
+        /// <summary>
         /// Counts the number of command sets.
         /// </summary>
         public int CountSets()

@@ -117,6 +117,20 @@ namespace MissileSharp
         }
 
         /// <summary>
+        /// Gets a list with the names of all loaded command sets.
+        /// </summary>
+        /// <returns>A list of command set names</returns>
+        public List<string> GetLoadedCommandSetNames()
+        {
+            if (sets.CountSets() > 0)
+            {
+                return sets.GetCommandSetNames();
+            }
+
+            return new List<string>();
+        }
+
+        /// <summary>
         /// Move up for X milliseconds
         /// </summary>
         /// <param name="milliseconds">Time to move</param>
