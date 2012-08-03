@@ -62,7 +62,7 @@ namespace MissileSharp.Tests
         }
 
         [Test]
-        public void Add_CommandSetWithUpperCase_IsSavedInLowerCase()
+        public void Add_CommandSetWithUpperCase_CanBeLoadedInLowerCase()
         {
             list.Add("NAME", Command.Up, 1);
             Assert.That(list.ContainsCommandSet("name"));
@@ -100,13 +100,6 @@ namespace MissileSharp.Tests
         {
             list.Add("name", Command.Up, 1);
             Assert.AreEqual(1, list.CountCommands("name"));
-        }
-
-        [Test]
-        public void CountCommands_CommandSetWithUpperCase_ReturnsCorrectNumberOfItems()
-        {
-            list.Add("name", Command.Up, 1);
-            Assert.AreEqual(1, list.CountCommands("NAME"));
         }
 
         [Test]

@@ -16,7 +16,7 @@ namespace MissileSharp
         /// </summary>
         public CommandSetList()
         {
-            dict = new Dictionary<string, List<LauncherCommand>>();
+            dict = new Dictionary<string, List<LauncherCommand>>(StringComparer.OrdinalIgnoreCase);
         }
 
         /// <summary>
@@ -36,12 +36,12 @@ namespace MissileSharp
                 throw new ArgumentNullException("command is empty");
             }
 
-            if (!dict.ContainsKey(commandSetName.ToLower()))
+            if (!dict.ContainsKey(commandSetName))
             {
-                dict.Add(commandSetName.ToLower(), new List<LauncherCommand>());
+                dict.Add(commandSetName, new List<LauncherCommand>());
             }
 
-            dict[commandSetName.ToLower()].Add(command);
+            dict[commandSetName].Add(command);
         }
 
         /// <summary>
@@ -75,9 +75,9 @@ namespace MissileSharp
         {
             var list = new List<LauncherCommand>();
 
-            if (dict.ContainsKey(commandSetName.ToLower()))
+            if (dict.ContainsKey(commandSetName))
             {
-                list = dict[commandSetName.ToLower()];
+                list = dict[commandSetName];
             }
 
             return list;

@@ -42,7 +42,7 @@ namespace MissileSharp
             {
                 if (line.StartsWith("[") && line.EndsWith("]"))
                 {
-                    key = line.Substring(1, line.Length - 2).ToLower();
+                    key = line.Substring(1, line.Length - 2);
                 }
                 else if (line.Length > 0) // ignore empty lines
                 {
