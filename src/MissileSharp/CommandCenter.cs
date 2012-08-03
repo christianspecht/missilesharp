@@ -117,6 +117,17 @@ namespace MissileSharp
         }
 
         /// <summary>
+        /// Loads a list of command sets from a config file (execute command sets with RunCommandSet)
+        /// </summary>
+        /// <param name="configFileLines">The lines of the config file (after loading the file with File.ReadAllLines)</param>
+        /// <returns>True if at least one command set was loaded</returns>
+        public bool LoadCommandSets(string[] configFileLines)
+        {
+            sets = ConfigReader.Read(configFileLines);
+            return (sets.CountSets() > 0);
+        }
+
+        /// <summary>
         /// Gets a list with the names of all loaded command sets.
         /// </summary>
         /// <returns>A list of command set names</returns>

@@ -11,10 +11,10 @@ namespace MissileSharp.Launcher.ViewModels
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public MainWindowViewModel()
+        public MainWindowViewModel(string[] configFileLines)
         {
             model = new CommandCenter(new ThunderMissileLauncher());
-            model.LoadCommandSets("settings.txt");
+            model.LoadCommandSets(configFileLines);
 
             this.CommandSets = new ObservableCollection<string>(model.GetLoadedCommandSetNames());
         }
