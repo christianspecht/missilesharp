@@ -50,12 +50,12 @@
     <Compile Include="..\MissileSharp\AssemblyVersion.cs">
       <Link>AssemblyVersion.cs</Link>
     </Compile>
-    <Compile Include="CommandCenterTests.cs" />
-    <Compile Include="ConfigReaderTests.cs" />
-    <Compile Include="CommandSetListTests.cs">
+    <Compile Include="Library\CommandCenterTests.cs" />
+    <Compile Include="Library\ConfigReaderTests.cs" />
+    <Compile Include="Library\CommandSetListTests.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="LauncherCommandTests.cs" />
+    <Compile Include="Library\LauncherCommandTests.cs" />
     <Compile Include="Launcher\MainWindowViewModelTests.cs" />
     <Compile Include="MockHidDevice.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

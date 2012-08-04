@@ -1,7 +1,7 @@
 ﻿using System;
 using NUnit.Framework;
 
-namespace MissileSharp.Tests
+namespace MissileSharp.Tests.Library
 {
     [TestFixture]
     public class CommandCenterTests
