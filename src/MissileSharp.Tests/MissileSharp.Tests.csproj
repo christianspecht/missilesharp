@@ -56,6 +56,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="LauncherCommandTests.cs" />
+    <Compile Include="Launcher\MainWindowViewModelTests.cs" />
     <Compile Include="MockHidDevice.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StubMissileLauncher.cs" />
@@ -64,6 +65,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MissileSharp.Launcher\MissileSharp.Launcher.csproj">
+      <Project>{84C01C0B-3CBA-423B-B5EF-0235C40BBA61}</Project>
+      <Name>MissileSharp.Launcher</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MissileSharp\MissileSharp.csproj">
       <Project>{5B260FC8-DD55-40F3-A545-727BB7B6221B}</Project>
       <Name>MissileSharp</Name>
