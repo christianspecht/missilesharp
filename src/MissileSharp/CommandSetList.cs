@@ -89,7 +89,7 @@ namespace MissileSharp
         /// <returns>A list of command set names</returns>
         public List<string> GetCommandSetNames()
         {
-            return new List<string>(dict.Keys);
+            return new List<string>(dict.Keys.OrderBy(d => d));
         }
 
         /// <summary>

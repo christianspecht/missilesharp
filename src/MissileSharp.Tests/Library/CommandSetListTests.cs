@@ -151,6 +151,18 @@ namespace MissileSharp.Tests.Library
         }
 
         [Test]
+        public void GetCommandSetNames_UnsortedList_IsSortedAlphabetically()
+        {
+            list.Add("bb", Command.Up, 1);
+            list.Add("aa", Command.Up, 1);
+            list.Add("cc", Command.Up, 1);
+
+            Assert.AreEqual("aa", list.GetCommandSetNames()[0]);
+            Assert.AreEqual("bb", list.GetCommandSetNames()[1]);
+            Assert.AreEqual("cc", list.GetCommandSetNames()[2]);
+        }
+
+        [Test]
         public void ContainsCommandSet_ExistingCommandSet_ReturnsTrue()
         {
             list.Add("name", Command.Up, 1);
