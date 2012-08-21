@@ -1,5 +1,5 @@
-﻿using System.IO;
-using System.Windows;
+﻿using System.Windows;
+using MissileSharp.Launcher.Services;
 using MissileSharp.Launcher.ViewModels;
 
 namespace MissileSharp.Launcher
@@ -13,11 +13,8 @@ namespace MissileSharp.Launcher
         {
             base.OnStartup(e);
 
-            string configFile = "settings.txt";
-            string[] config = File.ReadAllLines(configFile);
-
             var window = new MainWindow();
-            var viewmodel = new MainWindowViewModel(config);
+            var viewmodel = new MainWindowViewModel(new ConfigService());
             window.DataContext = viewmodel;
             window.Show();
         }

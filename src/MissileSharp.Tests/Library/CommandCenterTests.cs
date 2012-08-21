@@ -113,5 +113,12 @@ namespace MissileSharp.Tests.Library
         {
             Assert.Throws<InvalidOperationException>(() => cmd.RunCommandSet("invalid"));
         }
+
+        [Test]
+        public void LoadCommandSet_EmptyFile_ReturnsFalse()
+        {
+            var config = new string[] { };
+            Assert.IsFalse(cmd.LoadCommandSets(config));
+        }
     }
 }
