@@ -11,6 +11,7 @@
 
 		<!-- Build Folder -->
 		<OutDir>src\MissileSharp\bin\Release</OutDir>
+		<LauncherOutDir>src\MissileSharp.Launcher\bin\Release</LauncherOutDir>
 
 		<!-- create zip file? -->
 		<CreateZip>0</CreateZip>
@@ -43,7 +44,9 @@
 		<CallTarget Targets="Build"/>
 		<CallTarget Condition="$(RunTests) == '1'" Targets="Test"/>
 		<CallTarget Targets="CopyRelease"/>
+		<CallTarget Targets="CopyReleaseLauncher"/>
 		<CallTarget Condition="$(CreateZip) == '1'" Targets="Zip"/>
+		<CallTarget Condition="$(CreateZip) == '1'" Targets="ZipLauncher"/>
 		<CallTarget Condition="$(CreatePackage) == '1'" Targets="NuGet"/>
 	</Target>
 
@@ -85,12 +88,37 @@
 	</Target>
 
 
+	<!-- copy files to launcher release folder -->
+	<Target Name="CopyReleaseLauncher">
+		<MakeDir Directories="$(ReleaseDir)\bin-launcher"/>
+		<ItemGroup>
+			<LauncherReleaseFiles
+				Include="$(LauncherOutDir)\*.*;
+						readme.md;
+						license.txt"
+				Exclude="$(LauncherOutDir)\*.pdb;
+						$(LauncherOutDir)\*.xml">
+			</LauncherReleaseFiles>
+		</ItemGroup>
+		<Copy SourceFiles="@(LauncherReleaseFiles)" DestinationFolder="$(ReleaseDir)\bin-launcher"/>
+	</Target>
+
+
 	<!-- create zip file with content of release\bin folder -->
 	<Target Name="Zip">
 		<CreateItem Include="$(ReleaseDir)\bin\*.*" >
 			<Output ItemName="ZipFiles" TaskParameter="Include"/>
 		</CreateItem>
 		<Zip ZipFileName="$(ReleaseDir)\zip\missilesharp-$(VersionNumber).zip" WorkingDirectory="$(ReleaseDir)\bin" Files="@(ZipFiles)" />
+	</Target>
+
+
+	<!-- create zip file with content of release\bin-launcher folder -->
+	<Target Name="ZipLauncher">
+		<CreateItem Include="$(ReleaseDir)\bin-launcher\*.*" >
+			<Output ItemName="LauncherZipFiles" TaskParameter="Include"/>
+		</CreateItem>
+		<Zip ZipFileName="$(ReleaseDir)\zip-launcher\missilesharp-launcher-$(VersionNumber).zip" WorkingDirectory="$(ReleaseDir)\bin-launcher" Files="@(LauncherZipFiles)" />
 	</Target>
 
 
