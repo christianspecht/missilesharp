@@ -1,6 +1,5 @@
 ﻿using System.Windows;
 using Autofac;
-using MissileSharp.Launcher.Services;
 using MissileSharp.Launcher.ViewModels;
 
 namespace MissileSharp.Launcher
@@ -15,9 +14,15 @@ namespace MissileSharp.Launcher
             base.OnStartup(e);
 
             var builder = new ContainerBuilder();
-            builder.RegisterType<MainWindowViewModel>();
-            builder.RegisterType<ConfigService>().As<IConfigService>();
-            builder.RegisterType<MessageService>().As<IMessageService>();
+
+            builder.RegisterAssemblyTypes(typeof(App).Assembly)
+                .Where(t => t.Name.EndsWith("ViewModel"))
+                .AsSelf();
+
+            builder.RegisterAssemblyTypes(typeof(App).Assembly)
+                .Where(t => t.Name.EndsWith("Service"))
+                .AsImplementedInterfaces();
+
             var container = builder.Build();
 
             var window = new MainWindow();
