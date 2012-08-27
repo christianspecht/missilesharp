@@ -15,7 +15,9 @@ namespace MissileSharp.Tests.Launcher
             var config = new StubConfigService();
             config.SetConfig(new string[] { "[name2]", "up,5", "[name1]", "up,5" });
 
-            viewmodel = new MainWindowViewModel(config);
+            var messageService = new StubMessageService();
+
+            viewmodel = new MainWindowViewModel(config, messageService);
         }
 
         [Test]
@@ -35,7 +37,7 @@ namespace MissileSharp.Tests.Launcher
         public void Constructor_ConfigIsEmpty_ThrowsException()
         {
             var config = new StubConfigService();
-            Assert.Throws<NullReferenceException>(() => new MainWindowViewModel(config));
+            Assert.Throws<NullReferenceException>(() => new MainWindowViewModel(config, new StubMessageService()));
         }
     }
 }

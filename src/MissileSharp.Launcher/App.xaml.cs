@@ -17,6 +17,7 @@ namespace MissileSharp.Launcher
             var builder = new ContainerBuilder();
             builder.RegisterType<MainWindowViewModel>();
             builder.RegisterType<ConfigService>().As<IConfigService>();
+            builder.RegisterType<MessageService>().As<IMessageService>();
             var container = builder.Build();
 
             var window = new MainWindow();

@@ -10,16 +10,18 @@ namespace MissileSharp.Launcher.ViewModels
     {
         private CommandCenter model;
         private IConfigService configService;
+        private IMessageService messageService;
 
         public ObservableCollection<string> CommandSets { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public MainWindowViewModel(IConfigService configService)
+        public MainWindowViewModel(IConfigService configService, IMessageService messageService)
         {
             this.model = new CommandCenter(new ThunderMissileLauncher());
 
             this.configService = configService;
+            this.messageService = messageService;
 
             try
             {
@@ -27,7 +29,7 @@ namespace MissileSharp.Launcher.ViewModels
             }
             catch (Exception ex)
             {
-                MessageBox.Show(string.Format("Couldn't load config file. Error:{0}{1}", Environment.NewLine, ex.Message));
+                messageService.ShowMessage(string.Format("Couldn't load config file. Error:{0}{1}", Environment.NewLine, ex.Message));
                 Application.Current.Shutdown();
                 return;
             }
