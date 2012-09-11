@@ -6,7 +6,7 @@
         <ListBox ItemsSource="{Binding CommandSets}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Button Content="{Binding}" />
+                    <Button Content="{Binding}" Command="{Binding DataContext.FireCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" CommandParameter="{Binding}" />
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>

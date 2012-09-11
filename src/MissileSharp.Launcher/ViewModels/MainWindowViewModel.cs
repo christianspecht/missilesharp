@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
+using System.Windows.Input;
 using MissileSharp.Launcher.Services;
 
 namespace MissileSharp.Launcher.ViewModels
@@ -14,6 +15,8 @@ namespace MissileSharp.Launcher.ViewModels
 
         public ObservableCollection<string> CommandSets { get; set; }
 
+        public ICommand FireCommand { get; set; }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public MainWindowViewModel(IConfigService configService, IMessageService messageService)
@@ -22,6 +25,8 @@ namespace MissileSharp.Launcher.ViewModels
 
             this.configService = configService;
             this.messageService = messageService;
+
+            this.FireCommand = new RelayCommand(new Action<object>(this.FireMissile));
 
             try
             {
@@ -35,6 +40,11 @@ namespace MissileSharp.Launcher.ViewModels
             }
 
             this.CommandSets = new ObservableCollection<string>(model.GetLoadedCommandSetNames());
+        }
+
+        private void FireMissile(Object obj)
+        {
+            this.model.RunCommandSet(obj.ToString());
         }
     }
 }
