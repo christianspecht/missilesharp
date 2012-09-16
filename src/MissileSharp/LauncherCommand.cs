@@ -1,4 +1,5 @@
 ﻿using System;
+using MissileSharp.Properties;
 
 namespace MissileSharp
 {
@@ -16,12 +17,12 @@ namespace MissileSharp
         {
             if (string.IsNullOrEmpty(command))
             {
-                throw new ArgumentNullException("command is empty");
+                throw new ArgumentNullException(Resources.CommandEmpty);
             }
 
             if (value < 0)
             {
-                throw new ArgumentOutOfRangeException("value must be equal or greater than zero");
+                throw new ArgumentOutOfRangeException(Resources.ValueMustBeEqualGreaterZero);
             }
 
             switch (command.ToLower())
@@ -45,7 +46,7 @@ namespace MissileSharp
                     this.Command = Command.Fire;
                     break;
                 default:
-                    throw new ArgumentOutOfRangeException("command must be one of the following: up, down, left, right, reset, fire");
+                    throw new ArgumentOutOfRangeException(Resources.CommandMustBeOneOfFollowing);
             }
 
             this.Value = value;
@@ -60,7 +61,7 @@ namespace MissileSharp
         {
             if (value < 0)
             {
-                throw new ArgumentOutOfRangeException("value must be equal or greater than zero");
+                throw new ArgumentOutOfRangeException(Resources.ValueMustBeEqualGreaterZero);
             }
 
             this.Command = command;

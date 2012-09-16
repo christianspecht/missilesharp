@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MissileSharp.Launcher.Properties {
+namespace MissileSharp.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace MissileSharp.Launcher.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MissileSharp.Launcher.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MissileSharp.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,29 +61,74 @@ namespace MissileSharp.Launcher.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Config file empty:  ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die command is empty ähnelt.
         /// </summary>
-        internal static string ConfigFileEmpty {
+        internal static string CommandEmpty {
             get {
-                return ResourceManager.GetString("ConfigFileEmpty", resourceCulture);
+                return ResourceManager.GetString("CommandEmpty", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Couldn&apos;t load config file. Error:{0}{1} ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die command must be one of the following: up, down, left, right, reset, fire ähnelt.
         /// </summary>
-        internal static string ConfigFileError {
+        internal static string CommandMustBeOneOfFollowing {
             get {
-                return ResourceManager.GetString("ConfigFileError", resourceCulture);
+                return ResourceManager.GetString("CommandMustBeOneOfFollowing", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Config file missing:  ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die command set name is empty ähnelt.
         /// </summary>
-        internal static string ConfigFileMissing {
+        internal static string CommandSetNameEmpty {
             get {
-                return ResourceManager.GetString("ConfigFileMissing", resourceCulture);
+                return ResourceManager.GetString("CommandSetNameEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The first line in the config must be a command set name. There can be no commands before the first command set name! ähnelt.
+        /// </summary>
+        internal static string FirstLineMustBeCommandSetName {
+            get {
+                return ResourceManager.GetString("FirstLineMustBeCommandSetName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die This line in the config file does not contain exactly two items:  ähnelt.
+        /// </summary>
+        internal static string LineDoesNotContainTwoItems {
+            get {
+                return ResourceManager.GetString("LineDoesNotContainTwoItems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die No command sets available. You need to load them first using the LoadCommandSets method! ähnelt.
+        /// </summary>
+        internal static string NoCommandSets {
+            get {
+                return ResourceManager.GetString("NoCommandSets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The second item in this line in the config file must be numeric:  ähnelt.
+        /// </summary>
+        internal static string SecondItemMustBeNumeric {
+            get {
+                return ResourceManager.GetString("SecondItemMustBeNumeric", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die value must be equal or greater than zero ähnelt.
+        /// </summary>
+        internal static string ValueMustBeEqualGreaterZero {
+            get {
+                return ResourceManager.GetString("ValueMustBeEqualGreaterZero", resourceCulture);
             }
         }
     }

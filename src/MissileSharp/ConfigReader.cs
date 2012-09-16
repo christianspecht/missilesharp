@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using MissileSharp.Properties;
 
 namespace MissileSharp
 {
@@ -48,21 +49,21 @@ namespace MissileSharp
                 {
                     if (string.IsNullOrEmpty(key))
                     {
-                        throw new InvalidOperationException("The first line in the config must be a command set name. There can be no commands before the first command set name!");
+                        throw new InvalidOperationException(Resources.FirstLineMustBeCommandSetName);
                     }
 
                     var items = line.Split(',');
 
                     if (items.Length != 2)
                     {
-                        throw new InvalidOperationException("This line in the config file does not contain exactly two items: " + line);
+                        throw new InvalidOperationException(Resources.LineDoesNotContainTwoItems + line);
                     }
 
                     int value;
 
                     if (!int.TryParse(items[1], out value))
                     {
-                        throw new InvalidOperationException("The second item in this line in the config file must be numeric: " + line);
+                        throw new InvalidOperationException(Resources.SecondItemMustBeNumeric + line);
                     }
 
                     commands.Add(key, items[0], value);

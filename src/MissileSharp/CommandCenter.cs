@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
+using MissileSharp.Properties;
 
 namespace MissileSharp
 {
@@ -96,7 +97,7 @@ namespace MissileSharp
         {
             if (sets.CountSets() == 0)
             {
-                throw new InvalidOperationException("No command sets available. You need to load them first using the LoadCommandSets method!");
+                throw new InvalidOperationException(Resources.NoCommandSets);
             }
 
             if (sets.ContainsCommandSet(commandSetName))

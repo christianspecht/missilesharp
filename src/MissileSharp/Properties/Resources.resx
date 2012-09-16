@@ -117,13 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ConfigFileEmpty" xml:space="preserve">
-    <value>Config file empty: </value>
+  <data name="CommandEmpty" xml:space="preserve">
+    <value>command is empty</value>
   </data>
-  <data name="ConfigFileError" xml:space="preserve">
-    <value>Couldn't load config file. Error:{0}{1}</value>
+  <data name="CommandMustBeOneOfFollowing" xml:space="preserve">
+    <value>command must be one of the following: up, down, left, right, reset, fire</value>
   </data>
-  <data name="ConfigFileMissing" xml:space="preserve">
-    <value>Config file missing: </value>
+  <data name="CommandSetNameEmpty" xml:space="preserve">
+    <value>command set name is empty</value>
+  </data>
+  <data name="FirstLineMustBeCommandSetName" xml:space="preserve">
+    <value>The first line in the config must be a command set name. There can be no commands before the first command set name!</value>
+  </data>
+  <data name="LineDoesNotContainTwoItems" xml:space="preserve">
+    <value>This line in the config file does not contain exactly two items: </value>
+  </data>
+  <data name="NoCommandSets" xml:space="preserve">
+    <value>No command sets available. You need to load them first using the LoadCommandSets method!</value>
+  </data>
+  <data name="SecondItemMustBeNumeric" xml:space="preserve">
+    <value>The second item in this line in the config file must be numeric: </value>
+  </data>
+  <data name="ValueMustBeEqualGreaterZero" xml:space="preserve">
+    <value>value must be equal or greater than zero</value>
   </data>
 </root>

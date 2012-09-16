@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
+using MissileSharp.Launcher.Properties;
 using MissileSharp.Launcher.Services;
 
 namespace MissileSharp.Launcher.ViewModels
@@ -34,7 +35,7 @@ namespace MissileSharp.Launcher.ViewModels
             }
             catch (Exception ex)
             {
-                messageService.ShowMessage(string.Format("Couldn't load config file. Error:{0}{1}", Environment.NewLine, ex.Message));
+                messageService.ShowMessage(string.Format(Resources.ConfigFileError, Environment.NewLine, ex.Message));
                 Application.Current.Shutdown();
                 return;
             }

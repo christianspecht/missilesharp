@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using MissileSharp.Launcher.Properties;
 
 namespace MissileSharp.Launcher.Services
 {
@@ -13,14 +14,14 @@ namespace MissileSharp.Launcher.Services
 
             if (!File.Exists(configFile))
             {
-                throw new FileNotFoundException("Config file missing: " + configFile);
+                throw new FileNotFoundException(Resources.ConfigFileMissing + configFile);
             }
 
             var configFileLines = File.ReadAllLines(configFile);
 
             if (configFileLines.Length == 0)
             {
-                throw new FileFormatException("Config file empty: " + configFile);
+                throw new FileFormatException(Resources.ConfigFileEmpty + configFile);
             }
 
             return configFileLines;

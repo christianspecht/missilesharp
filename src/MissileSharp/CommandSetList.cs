@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using MissileSharp.Properties;
 
 namespace MissileSharp
 {
@@ -28,12 +29,12 @@ namespace MissileSharp
         {
             if (string.IsNullOrEmpty(commandSetName))
             {
-                throw new ArgumentNullException("command set name is empty");
+                throw new ArgumentNullException(Resources.CommandSetNameEmpty);
             }
 
             if (command == null)
             {
-                throw new ArgumentNullException("command is empty");
+                throw new ArgumentNullException(Resources.CommandEmpty);
             }
 
             if (!dict.ContainsKey(commandSetName))
