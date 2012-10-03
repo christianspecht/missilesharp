@@ -59,6 +59,7 @@
     </Compile>
     <Compile Include="Library\LauncherCommandTests.cs" />
     <Compile Include="Launcher\MainWindowViewModelTests.cs" />
+    <Compile Include="Library\LauncherModelFactoryTests.cs" />
     <Compile Include="MockHidDevice.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StubMissileLauncher.cs" />

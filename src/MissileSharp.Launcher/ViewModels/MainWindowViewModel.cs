@@ -22,10 +22,12 @@ namespace MissileSharp.Launcher.ViewModels
 
         public MainWindowViewModel(IConfigService configService, IMessageService messageService)
         {
-            this.model = new CommandCenter(new ThunderMissileLauncher());
-
             this.configService = configService;
             this.messageService = messageService;
+
+            var launcher = LauncherModelFactory.GetLauncher("MissileSharp.ThunderMissileLauncher");
+
+            this.model = new CommandCenter(launcher);
 
             this.FireCommand = new RelayCommand(new Action<object>(this.FireMissile));
 

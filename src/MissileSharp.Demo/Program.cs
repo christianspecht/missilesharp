@@ -22,7 +22,9 @@ namespace MissileSharp.Demo
             string choice = Console.ReadLine();
             Console.WriteLine();
 
-            using (var launcher = new CommandCenter(new ThunderMissileLauncher()))
+            // instead of hardcoding the name, you could load it from a config file here
+            var launcherModel = LauncherModelFactory.GetLauncher("MissileSharp.ThunderMissileLauncher");
+            using (var launcher = new CommandCenter(launcherModel))
             {
                 if (launcher.IsReady)
                 {

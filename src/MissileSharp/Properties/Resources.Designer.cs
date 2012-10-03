@@ -97,6 +97,15 @@ namespace MissileSharp.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die No launcher model with this name available:  ähnelt.
+        /// </summary>
+        internal static string LauncherModelNotFound {
+            get {
+                return ResourceManager.GetString("LauncherModelNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die This line in the config file does not contain exactly two items:  ähnelt.
         /// </summary>
         internal static string LineDoesNotContainTwoItems {
