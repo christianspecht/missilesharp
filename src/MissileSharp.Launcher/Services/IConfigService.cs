@@ -7,5 +7,7 @@ namespace MissileSharp.Launcher.Services
     public interface IConfigService
     {
         string[] GetConfig();
+        string LauncherName { get; }
+        string LauncherAssembly { get; }
     }
 }

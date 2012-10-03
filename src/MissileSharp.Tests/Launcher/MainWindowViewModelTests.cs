@@ -14,6 +14,8 @@ namespace MissileSharp.Tests.Launcher
         {
             var config = new StubConfigService();
             config.SetConfig(new string[] { "[name2]", "up,5", "[name1]", "up,5" });
+            config.LauncherAssembly = "MissileSharp.Tests.dll";
+            config.LauncherName = "MissileSharp.Tests.StubMissileLauncher";
 
             var messageService = new StubMessageService();
 
@@ -37,7 +39,7 @@ namespace MissileSharp.Tests.Launcher
         public void Constructor_ConfigIsEmpty_ThrowsException()
         {
             var config = new StubConfigService();
-            Assert.Throws<NullReferenceException>(() => new MainWindowViewModel(config, new StubMessageService()));
+            Assert.Throws<ArgumentNullException>(() => new MainWindowViewModel(config, new StubMessageService()));
         }
     }
 }

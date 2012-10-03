@@ -25,7 +25,7 @@ namespace MissileSharp.Launcher.ViewModels
             this.configService = configService;
             this.messageService = messageService;
 
-            var launcher = LauncherModelFactory.GetLauncher("MissileSharp.ThunderMissileLauncher");
+            var launcher = LauncherModelFactory.GetLauncher(configService.LauncherName, configService.LauncherAssembly);
 
             this.model = new CommandCenter(launcher);
 
