@@ -129,6 +129,9 @@
   <data name="FirstLineMustBeCommandSetName" xml:space="preserve">
     <value>The first line in the config must be a command set name. There can be no commands before the first command set name!</value>
   </data>
+  <data name="LauncherModelIsNotILauncherModel" xml:space="preserve">
+    <value>Launcher model '{0}' does not implement interface ILauncherModel</value>
+  </data>
   <data name="LauncherModelNotFound" xml:space="preserve">
     <value>No launcher model with this name available: </value>
   </data>

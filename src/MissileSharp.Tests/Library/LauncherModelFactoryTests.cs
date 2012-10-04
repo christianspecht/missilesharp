@@ -22,13 +22,19 @@ namespace MissileSharp.Tests.Library
         }
 
         [Test]
+        public void GetLauncher_ExistingClassDoesNotImplementILauncher_ThrowsException()
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() => LauncherModelFactory.GetLauncher("MissileSharp.CommandSetList"));
+        }
+
+        [Test]
         public void GetLauncher_InvalidLauncherName_ThrowsException()
         {
             Assert.Throws<TypeLoadException>(() => LauncherModelFactory.GetLauncher("MissileSharp.InvalidLauncher"));
         }
 
         [Test]
-        public void GetLauncher_InvalidAssemblyName_Throws()
+        public void GetLauncher_InvalidAssemblyName_ThrowsException()
         {
             Assert.Throws<FileNotFoundException>(() => LauncherModelFactory.GetLauncher("MissileSharp.InvalidLauncher", "Invalid.dll"));
         }

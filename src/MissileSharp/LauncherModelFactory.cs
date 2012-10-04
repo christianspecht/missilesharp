@@ -34,6 +34,11 @@ namespace MissileSharp
                 throw new TypeLoadException(Resources.LauncherModelNotFound + className);
             }
 
+            if (!typeof(ILauncherModel).IsAssignableFrom(type))
+            {
+                throw new ArgumentOutOfRangeException(string.Format(Resources.LauncherModelIsNotILauncherModel, className));
+            }
+
             return (ILauncherModel)Activator.CreateInstance(type);
         }
 

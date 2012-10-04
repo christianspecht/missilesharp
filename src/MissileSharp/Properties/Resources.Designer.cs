@@ -97,6 +97,15 @@ namespace MissileSharp.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Launcher model &apos;{0}&apos; does not implement interface ILauncherModel ähnelt.
+        /// </summary>
+        internal static string LauncherModelIsNotILauncherModel {
+            get {
+                return ResourceManager.GetString("LauncherModelIsNotILauncherModel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die No launcher model with this name available:  ähnelt.
         /// </summary>
         internal static string LauncherModelNotFound {
