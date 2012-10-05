@@ -1,4 +1,5 @@
 ﻿using System;
+using MissileSharp.Launcher.Services;
 using MissileSharp.Launcher.ViewModels;
 using NUnit.Framework;
 
@@ -12,14 +13,25 @@ namespace MissileSharp.Tests.Launcher
         [SetUp]
         public void Setup()
         {
-            var config = new StubConfigService();
-            config.SetConfig(new string[] { "[name2]", "up,5", "[name1]", "up,5" });
-            config.LauncherAssembly = "MissileSharp.Tests.dll";
-            config.LauncherName = "MissileSharp.Tests.StubMissileLauncher";
+            viewmodel = new MainWindowViewModel(GetConfigService(), new StubMessageService());
+        }
 
-            var messageService = new StubMessageService();
+        public IConfigService GetConfigService(string[] config = null)
+        {
+            var configService = new StubConfigService();
 
-            viewmodel = new MainWindowViewModel(config, messageService);
+            if (config == null)
+            {
+                configService.SetConfig(new string[] { "[name2]", "up,5", "[name1]", "up,5" });
+            }
+            else
+            {
+                configService.SetConfig(config);
+            }
+
+            configService.LauncherAssembly = "MissileSharp.Tests.dll";
+            configService.LauncherName = "MissileSharp.Tests.StubMissileLauncher";
+            return configService;
         }
 
         [Test]
