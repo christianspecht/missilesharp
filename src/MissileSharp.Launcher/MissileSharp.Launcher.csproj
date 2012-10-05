@@ -80,7 +80,9 @@
     <Compile Include="Services\ConfigService.cs" />
     <Compile Include="Services\IConfigService.cs" />
     <Compile Include="Services\IMessageService.cs" />
+    <Compile Include="Services\IShutdownService.cs" />
     <Compile Include="Services\MessageService.cs" />
+    <Compile Include="Services\ShutdownService.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

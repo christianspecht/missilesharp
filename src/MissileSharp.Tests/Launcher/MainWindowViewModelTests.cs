@@ -9,11 +9,13 @@ namespace MissileSharp.Tests.Launcher
     public class MainWindowViewModelTests
     {
         private MainWindowViewModel viewmodel;
+        private MockShutdownService shutdownservice;
         
         [SetUp]
         public void Setup()
         {
-            viewmodel = new MainWindowViewModel(GetConfigService(), new StubMessageService());
+            shutdownservice = new MockShutdownService();
+            viewmodel = new MainWindowViewModel(GetConfigService(), new StubMessageService(), shutdownservice);
         }
 
         public IConfigService GetConfigService(string[] config = null)
@@ -51,7 +53,17 @@ namespace MissileSharp.Tests.Launcher
         public void Constructor_ConfigIsEmpty_ThrowsException()
         {
             var config = new StubConfigService();
-            Assert.Throws<ArgumentNullException>(() => new MainWindowViewModel(config, new StubMessageService()));
+            Assert.Throws<ArgumentNullException>(() => new MainWindowViewModel(config, new StubMessageService(), shutdownservice));
+        }
+
+        [Test]
+        public void Constructor_LoadCommandSetsThrowsException_AppShutsDown()
+        {
+            // make model.LoadCommandSets throw by passing invalid config
+            var config = GetConfigService(new string[] { "invalid" });
+            new MainWindowViewModel(config, new StubMessageService(), shutdownservice);
+
+            Assert.True(shutdownservice.ShutDownWasCalled);
         }
     }
 }
