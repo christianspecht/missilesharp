@@ -23,9 +23,5 @@ namespace MissileSharp.Tests.Launcher
         {
             return this.config;
         }
-
-        public string LauncherName { get; set; }
-
-        public string LauncherAssembly { get; set; }
     }
 }

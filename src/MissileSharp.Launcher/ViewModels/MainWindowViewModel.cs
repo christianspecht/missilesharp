@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Windows;
 using System.Windows.Input;
 using MissileSharp.Launcher.Properties;
 using MissileSharp.Launcher.Services;
@@ -10,7 +9,7 @@ namespace MissileSharp.Launcher.ViewModels
 {
     public class MainWindowViewModel : INotifyPropertyChanged
     {
-        private CommandCenter model;
+        private ICommandCenter model;
         private IConfigService configService;
         private IMessageService messageService;
         private IShutdownService shutdownService;
@@ -21,15 +20,12 @@ namespace MissileSharp.Launcher.ViewModels
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public MainWindowViewModel(IConfigService configService, IMessageService messageService, IShutdownService shutdownService)
+        public MainWindowViewModel(ICommandCenterService commandCenterService, IConfigService configService, IMessageService messageService, IShutdownService shutdownService)
         {
             this.configService = configService;
             this.messageService = messageService;
             this.shutdownService = shutdownService;
-
-            var launcher = LauncherModelFactory.GetLauncher(this.configService.LauncherName, this.configService.LauncherAssembly);
-
-            this.model = new CommandCenter(launcher);
+            this.model = commandCenterService.GetCommandCenter();
 
             this.FireCommand = new RelayCommand(new Action<object>(this.FireMissile));
 

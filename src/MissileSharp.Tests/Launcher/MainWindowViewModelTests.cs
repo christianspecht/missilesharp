@@ -1,5 +1,4 @@
-﻿using System;
-using MissileSharp.Launcher.Services;
+﻿using MissileSharp.Launcher.Services;
 using MissileSharp.Launcher.ViewModels;
 using NUnit.Framework;
 
@@ -8,62 +7,53 @@ namespace MissileSharp.Tests.Launcher
     [TestFixture]
     public class MainWindowViewModelTests
     {
-        private MainWindowViewModel viewmodel;
         private MockShutdownService shutdownservice;
+        private ICommandCenterService commandcenterservice;
+        private MockCommandCenter commandcenter;
         
         [SetUp]
         public void Setup()
-        {
-            shutdownservice = new MockShutdownService();
-            viewmodel = new MainWindowViewModel(GetConfigService(), new StubMessageService(), shutdownservice);
+        {            
+            this.commandcenter = new MockCommandCenter();
+            this.commandcenterservice = new StubCommandCenterService();
+            ((StubCommandCenterService)commandcenterservice).CommandCenter = this.commandcenter;
+
+            this.shutdownservice = new MockShutdownService();
         }
 
-        public IConfigService GetConfigService(string[] config = null)
+        public MainWindowViewModel SetupViewModel(ICommandCenterService commandCenterService = null, IConfigService configService = null, IMessageService messageService = null, IShutdownService shutdownService = null)
         {
-            var configService = new StubConfigService();
-
-            if (config == null)
+            if (commandCenterService == null)
             {
-                configService.SetConfig(new string[] { "[name2]", "up,5", "[name1]", "up,5" });
-            }
-            else
-            {
-                configService.SetConfig(config);
+                commandCenterService = this.commandcenterservice;
             }
 
-            configService.LauncherAssembly = "MissileSharp.Tests.dll";
-            configService.LauncherName = "MissileSharp.Tests.StubMissileLauncher";
-            return configService;
+            if (configService == null)
+            {
+                configService = new StubConfigService();
+            }
+
+            if (messageService == null)
+            {
+                messageService = new StubMessageService();
+            }
+
+            if (shutdownService == null)
+            {
+                shutdownService = this.shutdownservice;
+            }
+
+            return new MainWindowViewModel(commandCenterService, configService, messageService, shutdownService);
         }
 
         [Test]
-        public void Constructor_ConfigWithTwoCommandSets_ObservableCollectionContainsTwoNames()
+        public void FireCommand_IsExecuted_RunCommandSetIsCalled()
         {
-            Assert.AreEqual(2, viewmodel.CommandSets.Count);
-        }
+            var viewmodel = SetupViewModel();
+            viewmodel.FireCommand.Execute("test");
 
-        [Test]
-        public void Constructor_ConfigWithTwoCommandSets_CollectionContainsOrderedCommandSets()
-        {
-            Assert.AreEqual("name1", viewmodel.CommandSets[0]);
-            Assert.AreEqual("name2", viewmodel.CommandSets[1]);
-        }
-
-        [Test]
-        public void Constructor_ConfigIsEmpty_ThrowsException()
-        {
-            var config = new StubConfigService();
-            Assert.Throws<ArgumentNullException>(() => new MainWindowViewModel(config, new StubMessageService(), shutdownservice));
-        }
-
-        [Test]
-        public void Constructor_LoadCommandSetsThrowsException_AppShutsDown()
-        {
-            // make model.LoadCommandSets throw by passing invalid config
-            var config = GetConfigService(new string[] { "invalid" });
-            new MainWindowViewModel(config, new StubMessageService(), shutdownservice);
-
-            Assert.True(shutdownservice.ShutDownWasCalled);
+            Assert.True(this.commandcenter.RunCommandSetWithStringWasCalled);
+            Assert.AreEqual("test", this.commandcenter.RunCommandSetCommandSetName);
         }
     }
 }

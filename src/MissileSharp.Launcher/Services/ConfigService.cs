@@ -1,5 +1,4 @@
-﻿using System.Configuration;
-using System.IO;
+﻿using System.IO;
 using MissileSharp.Launcher.Properties;
 
 namespace MissileSharp.Launcher.Services
@@ -26,16 +25,6 @@ namespace MissileSharp.Launcher.Services
             }
 
             return configFileLines;
-        }
-
-        public string LauncherName
-        {
-            get { return ConfigurationManager.AppSettings["LauncherName"]; }
-        }
-
-        public string LauncherAssembly
-        {
-            get { return ConfigurationManager.AppSettings["LauncherAssembly"]; }
         }
     }
 }

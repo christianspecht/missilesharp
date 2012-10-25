@@ -35,6 +35,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\NUnit.2.6.0.12054\lib\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -50,6 +51,8 @@
     <Compile Include="..\MissileSharp\AssemblyVersion.cs">
       <Link>AssemblyVersion.cs</Link>
     </Compile>
+    <Compile Include="Launcher\MockCommandCenter.cs" />
+    <Compile Include="Launcher\StubCommandCenterService.cs" />
     <Compile Include="Launcher\MockShutdownService.cs" />
     <Compile Include="Launcher\StubConfigService.cs" />
     <Compile Include="Launcher\StubMessageService.cs" />

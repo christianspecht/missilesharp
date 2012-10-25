@@ -77,7 +77,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="RelayCommand.cs" />
+    <Compile Include="Services\CommandCenterService.cs" />
     <Compile Include="Services\ConfigService.cs" />
+    <Compile Include="Services\ICommandCenterService.cs" />
     <Compile Include="Services\IConfigService.cs" />
     <Compile Include="Services\IMessageService.cs" />
     <Compile Include="Services\IShutdownService.cs" />
