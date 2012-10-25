@@ -8,7 +8,7 @@ namespace MissileSharp
     /// <summary>
     /// Controls an USB missile launcher
     /// </summary>
-    public class CommandCenter : IDisposable
+    public class CommandCenter : ICommandCenter, IDisposable
     {
         IHidDevice device;
         ILauncherModel launcher;
@@ -146,7 +146,7 @@ namespace MissileSharp
         /// Move up for X milliseconds
         /// </summary>
         /// <param name="milliseconds">Time to move</param>
-        public CommandCenter Up(int milliseconds)
+        public ICommandCenter Up(int milliseconds)
         {
             SendMoveCommand(launcher.Up, milliseconds);
             return this;
@@ -156,7 +156,7 @@ namespace MissileSharp
         /// Move down for X milliseconds
         /// </summary>
         /// <param name="milliseconds">Time to move</param>
-        public CommandCenter Down(int milliseconds)
+        public ICommandCenter Down(int milliseconds)
         {
             SendMoveCommand(launcher.Down, milliseconds);
             return this;
@@ -166,7 +166,7 @@ namespace MissileSharp
         /// Turn left for X milliseconds
         /// </summary>
         /// <param name="milliseconds">Time to move</param>
-        public CommandCenter Left(int milliseconds)
+        public ICommandCenter Left(int milliseconds)
         {
             SendMoveCommand(launcher.Left, milliseconds);
             return this;
@@ -176,7 +176,7 @@ namespace MissileSharp
         /// Turn right for X milliseconds
         /// </summary>
         /// <param name="milliseconds">Time to move</param>
-        public CommandCenter Right(int milliseconds)
+        public ICommandCenter Right(int milliseconds)
         {
             SendMoveCommand(launcher.Right, milliseconds);
             return this;
@@ -185,7 +185,7 @@ namespace MissileSharp
         /// <summary>
         /// Reset the launcher position (=move to bottom left)
         /// </summary>
-        public CommandCenter Reset()
+        public ICommandCenter Reset()
         {
             Down(launcher.ResetTimeDown);
             Left(launcher.ResetTimeLeft);
@@ -196,7 +196,7 @@ namespace MissileSharp
         /// Fire X missiles
         /// </summary>
         /// <param name="numberOfShots">Number of missiles to fire</param>
-        public CommandCenter Fire(int numberOfShots)
+        public ICommandCenter Fire(int numberOfShots)
         {
             if (numberOfShots < launcher.MinNumberOfShots)
             {

@@ -50,6 +50,7 @@
     <Compile Include="Command.cs" />
     <Compile Include="ConfigReader.cs" />
     <Compile Include="HidLibraryDevice.cs" />
+    <Compile Include="ICommandCenter.cs" />
     <Compile Include="IHidDevice.cs" />
     <Compile Include="ILauncherModel.cs" />
     <Compile Include="CommandCenter.cs" />
