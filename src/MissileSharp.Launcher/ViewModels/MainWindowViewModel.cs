@@ -27,6 +27,11 @@ namespace MissileSharp.Launcher.ViewModels
             this.shutdownService = shutdownService;
             this.model = commandCenterService.GetCommandCenter();
 
+            Initialize();
+        }
+
+        public void Initialize()
+        {
             this.FireCommand = new RelayCommand(new Action<object>(this.FireMissile));
 
             try

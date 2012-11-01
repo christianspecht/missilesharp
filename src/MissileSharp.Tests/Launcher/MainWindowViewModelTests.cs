@@ -1,5 +1,8 @@
-﻿using MissileSharp.Launcher.Services;
+﻿using System;
+using System.Collections.Generic;
+using MissileSharp.Launcher.Services;
 using MissileSharp.Launcher.ViewModels;
+using Moq;
 using NUnit.Framework;
 
 namespace MissileSharp.Tests.Launcher
@@ -9,16 +12,18 @@ namespace MissileSharp.Tests.Launcher
     {
         private MockShutdownService shutdownservice;
         private ICommandCenterService commandcenterservice;
-        private MockCommandCenter commandcenter;
+        private Mock<ICommandCenter> commandcenter;
         
         [SetUp]
         public void Setup()
-        {            
-            this.commandcenter = new MockCommandCenter();
+        {
             this.commandcenterservice = new StubCommandCenterService();
-            ((StubCommandCenterService)commandcenterservice).CommandCenter = this.commandcenter;
 
             this.shutdownservice = new MockShutdownService();
+
+            this.commandcenter = new Mock<ICommandCenter>();
+            this.commandcenter.Setup(m => m.LoadCommandSets(It.IsAny<string[]>())).Returns(true);            
+            this.commandcenter.Setup(m => m.GetLoadedCommandSetNames()).Returns(new List<string>());
         }
 
         public MainWindowViewModel SetupViewModel(ICommandCenterService commandCenterService = null, IConfigService configService = null, IMessageService messageService = null, IShutdownService shutdownService = null)
@@ -26,6 +31,7 @@ namespace MissileSharp.Tests.Launcher
             if (commandCenterService == null)
             {
                 commandCenterService = this.commandcenterservice;
+                ((StubCommandCenterService)this.commandcenterservice).CommandCenter = this.commandcenter.Object;
             }
 
             if (configService == null)
@@ -47,13 +53,28 @@ namespace MissileSharp.Tests.Launcher
         }
 
         [Test]
-        public void FireCommand_IsExecuted_RunCommandSetIsCalled()
+        public void Initialize_IsExecuted_DoesntShutdown()
         {
+            // test that the viewmodel initializes correctly with all the mocked/stubbed stuff, without throwing an exception or shutting down
+            var viewmodel = SetupViewModel();
+            Assert.False(this.shutdownservice.ShutDownWasCalled);
+        }
+
+        [Test]
+        public void Initialize_LoadCommandSetsThrows_AppShutsDown()
+        {
+            this.commandcenter.Setup(m => m.LoadCommandSets(It.IsAny<string[]>())).Throws<NotImplementedException>();
+            var viewmodel = SetupViewModel();
+            Assert.True(this.shutdownservice.ShutDownWasCalled);
+        }
+
+        [Test]
+        public void FireCommand_IsExecuted_RunCommandSetIsCalled()
+        {           
             var viewmodel = SetupViewModel();
             viewmodel.FireCommand.Execute("test");
 
-            Assert.True(this.commandcenter.RunCommandSetWithStringWasCalled);
-            Assert.AreEqual("test", this.commandcenter.RunCommandSetCommandSetName);
+            this.commandcenter.Verify(m => m.RunCommandSet("test"));
         }
     }
 }
