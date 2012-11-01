@@ -11,13 +11,13 @@ namespace MissileSharp.Tests.Launcher
     public class MainWindowViewModelTests
     {
         private Mock<IShutdownService> shutdownservice;
-        private ICommandCenterService commandcenterservice;
+        private Mock<ICommandCenterService> commandcenterservice;
         private Mock<ICommandCenter> commandcenter;
         
         [SetUp]
         public void Setup()
         {
-            this.commandcenterservice = new StubCommandCenterService();
+            this.commandcenterservice = new Mock<ICommandCenterService>();            
 
             this.shutdownservice = new Mock<IShutdownService>();
 
@@ -30,18 +30,18 @@ namespace MissileSharp.Tests.Launcher
         {
             if (commandCenterService == null)
             {
-                commandCenterService = this.commandcenterservice;
-                ((StubCommandCenterService)this.commandcenterservice).CommandCenter = this.commandcenter.Object;
+                this.commandcenterservice.Setup(stub => stub.GetCommandCenter()).Returns(this.commandcenter.Object);
+                commandCenterService = this.commandcenterservice.Object;
             }
 
             if (configService == null)
             {
-                configService = new StubConfigService();
+                configService = new Mock<IConfigService>().Object;
             }
 
             if (messageService == null)
             {
-                messageService = new StubMessageService();
+                messageService = new Mock<IMessageService>().Object;
             }
 
             if (shutdownService == null)
