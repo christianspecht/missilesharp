@@ -10,7 +10,7 @@ namespace MissileSharp.Tests.Launcher
     [TestFixture]
     public class MainWindowViewModelTests
     {
-        private MockShutdownService shutdownservice;
+        private Mock<IShutdownService> shutdownservice;
         private ICommandCenterService commandcenterservice;
         private Mock<ICommandCenter> commandcenter;
         
@@ -19,11 +19,11 @@ namespace MissileSharp.Tests.Launcher
         {
             this.commandcenterservice = new StubCommandCenterService();
 
-            this.shutdownservice = new MockShutdownService();
+            this.shutdownservice = new Mock<IShutdownService>();
 
             this.commandcenter = new Mock<ICommandCenter>();
-            this.commandcenter.Setup(m => m.LoadCommandSets(It.IsAny<string[]>())).Returns(true);            
-            this.commandcenter.Setup(m => m.GetLoadedCommandSetNames()).Returns(new List<string>());
+            this.commandcenter.Setup(mock => mock.LoadCommandSets(It.IsAny<string[]>())).Returns(true);
+            this.commandcenter.Setup(mock => mock.GetLoadedCommandSetNames()).Returns(new List<string>());
         }
 
         public MainWindowViewModel SetupViewModel(ICommandCenterService commandCenterService = null, IConfigService configService = null, IMessageService messageService = null, IShutdownService shutdownService = null)
@@ -46,7 +46,7 @@ namespace MissileSharp.Tests.Launcher
 
             if (shutdownService == null)
             {
-                shutdownService = this.shutdownservice;
+                shutdownService = this.shutdownservice.Object;
             }
 
             return new MainWindowViewModel(commandCenterService, configService, messageService, shutdownService);
@@ -57,7 +57,7 @@ namespace MissileSharp.Tests.Launcher
         {
             // test that the viewmodel initializes correctly with all the mocked/stubbed stuff, without throwing an exception or shutting down
             var viewmodel = SetupViewModel();
-            Assert.False(this.shutdownservice.ShutDownWasCalled);
+            this.shutdownservice.Verify(mock => mock.Shutdown(), Times.Never());
         }
 
         [Test]
@@ -65,7 +65,7 @@ namespace MissileSharp.Tests.Launcher
         {
             this.commandcenter.Setup(m => m.LoadCommandSets(It.IsAny<string[]>())).Throws<NotImplementedException>();
             var viewmodel = SetupViewModel();
-            Assert.True(this.shutdownservice.ShutDownWasCalled);
+            this.shutdownservice.Verify(mock => mock.Shutdown());
         }
 
         [Test]
@@ -74,7 +74,7 @@ namespace MissileSharp.Tests.Launcher
             var viewmodel = SetupViewModel();
             viewmodel.FireCommand.Execute("test");
 
-            this.commandcenter.Verify(m => m.RunCommandSet("test"));
+            this.commandcenter.Verify(mock => mock.RunCommandSet("test"));
         }
     }
 }

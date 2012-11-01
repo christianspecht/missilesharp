@@ -55,7 +55,6 @@
       <Link>AssemblyVersion.cs</Link>
     </Compile>
     <Compile Include="Launcher\StubCommandCenterService.cs" />
-    <Compile Include="Launcher\MockShutdownService.cs" />
     <Compile Include="Launcher\StubConfigService.cs" />
     <Compile Include="Launcher\StubMessageService.cs" />
     <Compile Include="Library\CommandCenterTests.cs" />
