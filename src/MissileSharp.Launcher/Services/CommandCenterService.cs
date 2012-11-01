@@ -1,15 +1,18 @@
-﻿using System.Configuration;
-
+﻿
 namespace MissileSharp.Launcher.Services
 {
     public class CommandCenterService : ICommandCenterService
     {
+        private IAppConfigService acs;
+
+        public CommandCenterService(IAppConfigService acs)
+        {
+            this.acs = acs;
+        }
+
         public ICommandCenter GetCommandCenter()
         {
-            string launcherName = ConfigurationManager.AppSettings["LauncherName"];
-            string launcherAssembly = ConfigurationManager.AppSettings["LauncherAssembly"];
-
-            var launcher = LauncherModelFactory.GetLauncher(launcherName, launcherAssembly);
+            var launcher = LauncherModelFactory.GetLauncher(acs.LauncherName, acs.LauncherAssembly);
             return new CommandCenter(launcher);
         }
     }
