@@ -86,5 +86,14 @@ namespace MissileSharp.Launcher.Properties {
                 return ResourceManager.GetString("ConfigFileMissing", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The config file doesn&apos;t contain any command sets! ähnelt.
+        /// </summary>
+        internal static string NoCommandSetsInConfig {
+            get {
+                return ResourceManager.GetString("NoCommandSetsInConfig", resourceCulture);
+            }
+        }
     }
 }

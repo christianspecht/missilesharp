@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows.Input;
 using MissileSharp.Launcher.Properties;
 using MissileSharp.Launcher.Services;
@@ -40,8 +41,13 @@ namespace MissileSharp.Launcher.ViewModels
             }
             catch (Exception ex)
             {
-                this.messageService.ShowMessage(string.Format(Resources.ConfigFileError, Environment.NewLine, ex.Message));
-                this.shutdownService.Shutdown();
+                Shutdown(string.Format(Resources.ConfigFileError, Environment.NewLine, ex.Message));
+                return;
+            }
+
+            if (!this.model.GetLoadedCommandSetNames().Any())
+            {
+                Shutdown(Resources.NoCommandSetsInConfig);
                 return;
             }
 
@@ -51,6 +57,12 @@ namespace MissileSharp.Launcher.ViewModels
         private void FireMissile(Object obj)
         {
             this.model.RunCommandSet(obj.ToString());
+        }
+
+        private void Shutdown(string message)
+        {
+            this.messageService.ShowMessage(message);
+            this.shutdownService.Shutdown();
         }
     }
 }

@@ -126,4 +126,7 @@
   <data name="ConfigFileMissing" xml:space="preserve">
     <value>Config file missing: </value>
   </data>
+  <data name="NoCommandSetsInConfig" xml:space="preserve">
+    <value>The config file doesn't contain any command sets!</value>
+  </data>
 </root>

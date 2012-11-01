@@ -23,7 +23,9 @@ namespace MissileSharp.Tests.Launcher
 
             this.commandcenter = new Mock<ICommandCenter>();
             this.commandcenter.Setup(mock => mock.LoadCommandSets(It.IsAny<string[]>())).Returns(true);
-            this.commandcenter.Setup(mock => mock.GetLoadedCommandSetNames()).Returns(new List<string>());
+            var list = new List<string>();
+            list.Add("test");
+            this.commandcenter.Setup(mock => mock.GetLoadedCommandSetNames()).Returns(list);
         }
 
         public MainWindowViewModel SetupViewModel(ICommandCenterService commandCenterService = null, IConfigService configService = null, IMessageService messageService = null, IShutdownService shutdownService = null)
@@ -63,7 +65,15 @@ namespace MissileSharp.Tests.Launcher
         [Test]
         public void Initialize_LoadCommandSetsThrows_AppShutsDown()
         {
-            this.commandcenter.Setup(m => m.LoadCommandSets(It.IsAny<string[]>())).Throws<NotImplementedException>();
+            this.commandcenter.Setup(stub => stub.LoadCommandSets(It.IsAny<string[]>())).Throws<NotImplementedException>();
+            var viewmodel = SetupViewModel();
+            this.shutdownservice.Verify(mock => mock.Shutdown());
+        }
+
+        [Test]
+        public void Initialize_GetLoadedCommandSetsIsEmpty_AppShutsDown()
+        {
+            this.commandcenter.Setup(stub => stub.GetLoadedCommandSetNames()).Returns(new List<string>());
             var viewmodel = SetupViewModel();
             this.shutdownservice.Verify(mock => mock.Shutdown());
         }
