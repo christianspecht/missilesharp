@@ -120,9 +120,6 @@
   <data name="ConfigFileEmpty" xml:space="preserve">
     <value>Config file empty: </value>
   </data>
-  <data name="ConfigFileError" xml:space="preserve">
-    <value>Couldn't load config file. Error:{0}{1}</value>
-  </data>
   <data name="ConfigFileMissing" xml:space="preserve">
     <value>Config file missing: </value>
   </data>

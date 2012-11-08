@@ -63,9 +63,18 @@ namespace MissileSharp.Tests.Launcher
         }
 
         [Test]
+        public void Initialize_GetCommandCenterThrows_AppShutsDown()
+        {
+            this.commandcenterservice.Setup(stub => stub.GetCommandCenter()).Throws<Exception>();
+            var viewmodel = SetupViewModel(this.commandcenterservice.Object);
+
+            this.shutdownservice.Verify(mock => mock.Shutdown());
+        }
+
+        [Test]
         public void Initialize_LoadCommandSetsThrows_AppShutsDown()
         {
-            this.commandcenter.Setup(stub => stub.LoadCommandSets(It.IsAny<string[]>())).Throws<NotImplementedException>();
+            this.commandcenter.Setup(stub => stub.LoadCommandSets(It.IsAny<string[]>())).Throws<Exception>();
             var viewmodel = SetupViewModel();
             this.shutdownservice.Verify(mock => mock.Shutdown());
         }

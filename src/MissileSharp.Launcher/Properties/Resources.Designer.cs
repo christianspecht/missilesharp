@@ -70,15 +70,6 @@ namespace MissileSharp.Launcher.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Couldn&apos;t load config file. Error:{0}{1} ähnelt.
-        /// </summary>
-        internal static string ConfigFileError {
-            get {
-                return ResourceManager.GetString("ConfigFileError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Config file missing:  ähnelt.
         /// </summary>
         internal static string ConfigFileMissing {
