@@ -25,6 +25,18 @@ namespace MissileSharp.Tests.Library
         }
 
         [Test]
+        public void Constructor_LauncherIsNull_Throws()
+        {
+            Assert.Catch<Exception>(()=> new CommandCenter(null, device));
+        }
+
+        [Test]
+        public void Constructor_DeviceIsNull_Throws()
+        {
+            Assert.Catch<Exception>(() => new CommandCenter(launcher, null));
+        }
+
+        [Test]
         public void SendCommand_Fire_SendsFire()
         {
             cmd.SendCommand(launcher.Fire);

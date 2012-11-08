@@ -30,6 +30,16 @@ namespace MissileSharp
         /// <remarks>This is only for testing - HidLibrary is the default library for production use</remarks>
         internal CommandCenter(ILauncherModel launcher, IHidDevice device)
         {
+            if (launcher == null)
+            {
+                throw new ArgumentException(Resources.LauncherIsNull);
+            }
+
+            if (device == null)
+            {
+                throw new ArgumentException(Resources.DeviceIsNull);
+            }
+
             this.launcher = launcher;
             this.device = device;
             this.sets = new CommandSetList();

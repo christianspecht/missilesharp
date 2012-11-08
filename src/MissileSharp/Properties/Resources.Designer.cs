@@ -88,11 +88,29 @@ namespace MissileSharp.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die &quot;device&quot; parameter is null! ähnelt.
+        /// </summary>
+        internal static string DeviceIsNull {
+            get {
+                return ResourceManager.GetString("DeviceIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die The first line in the config must be a command set name. There can be no commands before the first command set name! ähnelt.
         /// </summary>
         internal static string FirstLineMustBeCommandSetName {
             get {
                 return ResourceManager.GetString("FirstLineMustBeCommandSetName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die &quot;launcher&quot; parameter is null! ähnelt.
+        /// </summary>
+        internal static string LauncherIsNull {
+            get {
+                return ResourceManager.GetString("LauncherIsNull", resourceCulture);
             }
         }
         

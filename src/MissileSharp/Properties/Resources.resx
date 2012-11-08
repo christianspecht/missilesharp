@@ -126,8 +126,14 @@
   <data name="CommandSetNameEmpty" xml:space="preserve">
     <value>command set name is empty</value>
   </data>
+  <data name="DeviceIsNull" xml:space="preserve">
+    <value>"device" parameter is null!</value>
+  </data>
   <data name="FirstLineMustBeCommandSetName" xml:space="preserve">
     <value>The first line in the config must be a command set name. There can be no commands before the first command set name!</value>
+  </data>
+  <data name="LauncherIsNull" xml:space="preserve">
+    <value>"launcher" parameter is null!</value>
   </data>
   <data name="LauncherModelIsNotILauncherModel" xml:space="preserve">
     <value>Launcher model '{0}' does not implement interface ILauncherModel</value>
