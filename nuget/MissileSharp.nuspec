@@ -9,7 +9,10 @@
     <projectUrl>http://christianspecht.de/missilesharp/</projectUrl>
     <iconUrl>https://bitbucket.org/christianspecht/missilesharp/raw/tip/img/logo128x128.png</iconUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
-    <description>.NET library to control an USB Missile Launcher</description>
+    <summary>.NET library to control an USB Missile Launcher.</summary>
+    <description>MissileSharp is a .NET library to control an USB Missile Launcher.
+    You can directly send single commands to the launcher, or you can load a pre-defined sequence of commands from a config file and execute it with two lines of code.
+    See the project site for code examples!</description>
     <copyright>Copyright Christian Specht 2012</copyright>
     <tags>.NET USB Missile</tags>
     <dependencies>
