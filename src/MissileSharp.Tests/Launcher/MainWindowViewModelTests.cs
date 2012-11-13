@@ -95,5 +95,15 @@ namespace MissileSharp.Tests.Launcher
 
             this.commandcenter.Verify(mock => mock.RunCommandSet("test"));
         }
+
+        [Test]
+        public void FireCommand_RunCommandSetThrows_AppShutsDown()
+        {
+            this.commandcenter.Setup(stub => stub.RunCommandSet(It.IsAny<string>())).Throws<Exception>();
+            var viewmodel = SetupViewModel();
+            viewmodel.FireCommand.Execute("test");
+
+            this.shutdownservice.Verify(mock => mock.Shutdown());
+        }
     }
 }

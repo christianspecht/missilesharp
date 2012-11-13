@@ -58,7 +58,15 @@ namespace MissileSharp.Launcher.ViewModels
 
         private void FireMissile(Object obj)
         {
-            this.model.RunCommandSet(obj.ToString());
+            try
+            {
+                this.model.RunCommandSet(obj.ToString());
+            }
+            catch (Exception ex)
+            {
+                Shutdown(ex.Message);
+                return;
+            }
         }
 
         private void Shutdown(string message)
