@@ -7,6 +7,11 @@ namespace MissileSharp.Tests
     /// </summary>
     class MockHidDevice : IHidDevice
     {
+        public MockHidDevice()
+        {
+            IsReady = true;
+        }
+
         public void Initialize(int vendorId, int deviceId)
         {
             ReceivedCommands = new List<byte>();
@@ -16,10 +21,7 @@ namespace MissileSharp.Tests
         {
         }
 
-        public bool IsReady
-        {
-            get { return true; }
-        }
+        public bool IsReady { get; set; }
 
         public void SendData(byte[] data)
         {

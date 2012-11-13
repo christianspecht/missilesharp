@@ -64,6 +64,11 @@ namespace MissileSharp
         /// <param name="command">The command to run</param>
         public void RunCommand(LauncherCommand command)
         {
+            if (!IsReady)
+            {
+                throw new InvalidOperationException(Resources.DeviceIsNotReady);
+            }
+
             switch (command.Command)
             {
                 case Command.Up:

@@ -126,6 +126,9 @@
   <data name="CommandSetNameEmpty" xml:space="preserve">
     <value>command set name is empty</value>
   </data>
+  <data name="DeviceIsNotReady" xml:space="preserve">
+    <value>The device is not ready, please check the connection!</value>
+  </data>
   <data name="DeviceIsNull" xml:space="preserve">
     <value>"device" parameter is null!</value>
   </data>

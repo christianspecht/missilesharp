@@ -86,6 +86,13 @@ namespace MissileSharp.Tests.Library
         }
 
         [Test]
+        public void RunCommand_LauncherIsNotReady_Throws()
+        {
+            device.IsReady = false;
+            Assert.Catch<Exception>(() => cmd.RunCommand(new LauncherCommand(Command.Up, 0)));
+        }
+
+        [Test]
         public void RunCommand_Up_SendsUpCommand()
         {
             cmd.RunCommand(new LauncherCommand(Command.Up, 0));

@@ -88,6 +88,15 @@ namespace MissileSharp.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The device is not ready, please check the connection! ähnelt.
+        /// </summary>
+        internal static string DeviceIsNotReady {
+            get {
+                return ResourceManager.GetString("DeviceIsNotReady", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die &quot;device&quot; parameter is null! ähnelt.
         /// </summary>
         internal static string DeviceIsNull {
