@@ -79,6 +79,16 @@ namespace MissileSharp.Launcher.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Couldn&apos;t send commands to the launcher.
+        ///The device is not ready, please check the connection! ähnelt.
+        /// </summary>
+        internal static string DeviceIsNotReady {
+            get {
+                return ResourceManager.GetString("DeviceIsNotReady", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die The config file doesn&apos;t contain any command sets! ähnelt.
         /// </summary>
         internal static string NoCommandSetsInConfig {

@@ -13,6 +13,7 @@ namespace MissileSharp.Tests.Launcher
         private Mock<IShutdownService> shutdownservice;
         private Mock<ICommandCenterService> commandcenterservice;
         private Mock<ICommandCenter> commandcenter;
+        private Mock<IMessageService> messageservice;
         
         [SetUp]
         public void Setup()
@@ -23,9 +24,12 @@ namespace MissileSharp.Tests.Launcher
 
             this.commandcenter = new Mock<ICommandCenter>();
             this.commandcenter.Setup(mock => mock.LoadCommandSets(It.IsAny<string[]>())).Returns(true);
+            this.commandcenter.Setup(stub => stub.IsReady).Returns(true);
             var list = new List<string>();
             list.Add("test");
             this.commandcenter.Setup(mock => mock.GetLoadedCommandSetNames()).Returns(list);
+
+            this.messageservice = new Mock<IMessageService>();
         }
 
         public MainWindowViewModel SetupViewModel(ICommandCenterService commandCenterService = null, IConfigService configService = null, IMessageService messageService = null, IShutdownService shutdownService = null)
@@ -43,7 +47,7 @@ namespace MissileSharp.Tests.Launcher
 
             if (messageService == null)
             {
-                messageService = new Mock<IMessageService>().Object;
+                messageService = this.messageservice.Object;
             }
 
             if (shutdownService == null)
@@ -104,6 +108,16 @@ namespace MissileSharp.Tests.Launcher
             viewmodel.FireCommand.Execute("test");
 
             this.shutdownservice.Verify(mock => mock.Shutdown());
+        }
+
+        [Test]
+        public void FireCommand_LauncherIsNotReady_MessageIsDisplayed()
+        {
+            this.commandcenter.Setup(stub => stub.IsReady).Returns(false);
+            var viewmodel = SetupViewModel();
+            viewmodel.FireCommand.Execute("test");
+
+            this.messageservice.Verify(mock => mock.ShowMessage(It.IsAny<string>()));
         }
     }
 }

@@ -58,6 +58,12 @@ namespace MissileSharp.Launcher.ViewModels
 
         private void FireMissile(Object obj)
         {
+            if (!this.model.IsReady)
+            {
+                this.messageService.ShowMessage(Resources.DeviceIsNotReady);
+                return;
+            }
+
             try
             {
                 this.model.RunCommandSet(obj.ToString());

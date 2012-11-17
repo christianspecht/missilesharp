@@ -123,6 +123,10 @@
   <data name="ConfigFileMissing" xml:space="preserve">
     <value>Config file missing: </value>
   </data>
+  <data name="DeviceIsNotReady" xml:space="preserve">
+    <value>Couldn't send commands to the launcher.
+The device is not ready, please check the connection!</value>
+  </data>
   <data name="NoCommandSetsInConfig" xml:space="preserve">
     <value>The config file doesn't contain any command sets!</value>
   </data>
