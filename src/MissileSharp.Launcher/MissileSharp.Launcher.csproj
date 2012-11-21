@@ -135,6 +135,7 @@
       <Link>settings.txt</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Views\logo.ico" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
