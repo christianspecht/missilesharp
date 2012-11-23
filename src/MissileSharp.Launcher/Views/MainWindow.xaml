@@ -21,6 +21,7 @@
                         CommandParameter="{Binding}"
                         Height="50"
                         FontSize="20"
+                        Margin="5"
                         />
                 </DataTemplate>
             </ListBox.ItemTemplate>
