@@ -16,6 +16,10 @@ namespace MissileSharp.Launcher
             var builder = new ContainerBuilder();
 
             builder.RegisterAssemblyTypes(typeof(App).Assembly)
+                .Where(t => t.Name.EndsWith("Window"))
+                .AsSelf();
+
+            builder.RegisterAssemblyTypes(typeof(App).Assembly)
                 .Where(t => t.Name.EndsWith("ViewModel"))
                 .AsSelf();
 
@@ -25,9 +29,7 @@ namespace MissileSharp.Launcher
 
             var container = builder.Build();
 
-            var window = new MainWindow();
-            var viewmodel = container.Resolve<MainWindowViewModel>();
-            window.DataContext = viewmodel;
+            var window = container.Resolve<MainWindow>();
             window.Show();
         }
     }
