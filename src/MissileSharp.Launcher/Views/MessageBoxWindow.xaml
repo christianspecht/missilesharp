@@ -2,7 +2,14 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-        Title="MessageBoxWindow" Height="150" Width="300">
+        Title="MissileSharp Launcher"
+        Height="150" Width="350"
+        ShowMinButton="False"
+        ShowMaxRestoreButton="False" 
+        ShowCloseButton="False"
+        Icon="logo.ico"
+        ShowTitleBar="True"
+        ShowIconOnTitleBar="true">
     <Grid>
         <TextBlock Margin="5" Text="{Binding MessageText}" />
     </Grid>
