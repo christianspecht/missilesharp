@@ -29,6 +29,11 @@ namespace MissileSharp.Launcher
 
             var container = builder.Build();
 
+            // register the container
+            var builder2 = new ContainerBuilder();
+            builder2.RegisterInstance<IContainer>(container);
+            builder2.Update(container);
+
             var window = container.Resolve<MainWindow>();
             window.Show();
         }

@@ -68,6 +68,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModels\MessageBoxWindowViewModel.cs" />
+    <Compile Include="Views\MessageBoxWindow.xaml.cs">
+      <DependentUpon>MessageBoxWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -91,13 +95,19 @@
     <Compile Include="Services\IConfigService.cs" />
     <Compile Include="Services\IMessageService.cs" />
     <Compile Include="Services\IShutdownService.cs" />
+    <Compile Include="Services\IWindowService.cs" />
     <Compile Include="Services\MessageService.cs" />
     <Compile Include="Services\ShutdownService.cs" />
+    <Compile Include="Services\WindowService.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\MessageBoxWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
