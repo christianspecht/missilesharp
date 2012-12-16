@@ -68,6 +68,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\MessageBoxWindowViewModel.cs" />
     <Compile Include="Views\MessageBoxWindow.xaml.cs">
       <DependentUpon>MessageBoxWindow.xaml</DependentUpon>

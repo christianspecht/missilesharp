@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
 using System.Windows.Input;
 using MissileSharp.Launcher.Properties;
@@ -8,7 +7,7 @@ using MissileSharp.Launcher.Services;
 
 namespace MissileSharp.Launcher.ViewModels
 {
-    public class MainWindowViewModel : INotifyPropertyChanged
+    public class MainWindowViewModel : BaseViewModel
     {
         private ICommandCenter model;
         private ICommandCenterService commandCenterService;
@@ -19,8 +18,6 @@ namespace MissileSharp.Launcher.ViewModels
         public ObservableCollection<string> CommandSets { get; set; }
 
         public ICommand FireCommand { get; set; }
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         public MainWindowViewModel(ICommandCenterService commandCenterService, IConfigService configService, IMessageService messageService, IShutdownService shutdownService)
         {
