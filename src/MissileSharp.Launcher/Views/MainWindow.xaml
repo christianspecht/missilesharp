@@ -6,6 +6,11 @@
         Icon="logo.ico"
         ShowTitleBar="True"
         ShowIconOnTitleBar="true">
+    <Controls:MetroWindow.WindowCommands>
+        <Controls:WindowCommands>
+            <Button Content="ABOUT" Command="{Binding AboutCommand}" />
+        </Controls:WindowCommands>
+    </Controls:MetroWindow.WindowCommands>
     <Grid>
         <ListBox ItemsSource="{Binding CommandSets}">
             <ListBox.ItemContainerStyle>

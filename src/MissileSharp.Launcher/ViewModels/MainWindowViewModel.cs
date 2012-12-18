@@ -22,6 +22,11 @@ namespace MissileSharp.Launcher.ViewModels
             get { return new RelayCommand(this.FireMissile); }
         }
 
+        public ICommand AboutCommand
+        {
+            get { return new RelayCommand(this.AboutBox); }
+        }
+
         public MainWindowViewModel(ICommandCenterService commandCenterService, IConfigService configService, IMessageService messageService, IShutdownService shutdownService)
         {
             this.commandCenterService = commandCenterService;
@@ -77,6 +82,11 @@ namespace MissileSharp.Launcher.ViewModels
         {
             this.messageService.ShowMessage(message);
             this.shutdownService.Shutdown();
+        }
+
+        private void AboutBox(Object obj)
+        {
+            this.messageService.ShowMessage("about");
         }
     }
 }
