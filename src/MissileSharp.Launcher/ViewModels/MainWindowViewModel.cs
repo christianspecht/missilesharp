@@ -17,7 +17,10 @@ namespace MissileSharp.Launcher.ViewModels
 
         public ObservableCollection<string> CommandSets { get; set; }
 
-        public ICommand FireCommand { get; set; }
+        public ICommand FireCommand
+        {
+            get { return new RelayCommand(this.FireMissile); }
+        }
 
         public MainWindowViewModel(ICommandCenterService commandCenterService, IConfigService configService, IMessageService messageService, IShutdownService shutdownService)
         {
@@ -31,8 +34,6 @@ namespace MissileSharp.Launcher.ViewModels
 
         public void Initialize()
         {
-            this.FireCommand = new RelayCommand(new Action<object>(this.FireMissile));
-
             try
             {
                 this.model = this.commandCenterService.GetCommandCenter();

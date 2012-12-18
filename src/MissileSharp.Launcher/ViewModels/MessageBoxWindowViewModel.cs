@@ -22,10 +22,7 @@ namespace MissileSharp.Launcher.ViewModels
 
         public ICommand CloseCommand
         {
-            get
-            {
-                return new RelayCommand(o => ((Window)o).Close());
-            }
+            get { return new RelayCommand(o => ((Window)o).Close()); }
         }
     }
 }
