@@ -12,5 +12,13 @@
         ShowIconOnTitleBar="true">
     <Grid>
         <TextBlock Margin="5" Text="{Binding MessageText}" />
+        <Button 
+            Content="OK"
+            Command="{Binding CloseCommand}"
+            CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"
+            Height="30"
+            Margin="5"
+            VerticalAlignment="Bottom"
+            />
     </Grid>
 </Controls:MetroWindow>
