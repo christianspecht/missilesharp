@@ -5,7 +5,7 @@ namespace MissileSharp.Launcher.Services
 {
     public class WindowService : IWindowService
     {
-        private IContainer container;
+        private readonly IContainer container;
 
         public WindowService(IContainer container)
         {

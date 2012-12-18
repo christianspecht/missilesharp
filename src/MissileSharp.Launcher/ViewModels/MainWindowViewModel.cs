@@ -10,10 +10,10 @@ namespace MissileSharp.Launcher.ViewModels
     public class MainWindowViewModel : BaseViewModel
     {
         private ICommandCenter model;
-        private ICommandCenterService commandCenterService;
-        private IConfigService configService;
-        private IMessageService messageService;
-        private IShutdownService shutdownService;
+        private readonly ICommandCenterService commandCenterService;
+        private readonly IConfigService configService;
+        private readonly IMessageService messageService;
+        private readonly IShutdownService shutdownService;
 
         public ObservableCollection<string> CommandSets { get; set; }
 

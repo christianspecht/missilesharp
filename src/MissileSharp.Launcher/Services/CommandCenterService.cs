@@ -3,7 +3,7 @@ namespace MissileSharp.Launcher.Services
 {
     public class CommandCenterService : ICommandCenterService
     {
-        private IAppConfigService acs;
+        private readonly IAppConfigService acs;
 
         public CommandCenterService(IAppConfigService acs)
         {
