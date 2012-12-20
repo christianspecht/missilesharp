@@ -1,6 +1,4 @@
-﻿using System.Windows;
-using System.Windows.Input;
-
+﻿
 namespace MissileSharp.Launcher.ViewModels
 {
     public class MessageBoxWindowViewModel : BaseViewModel
@@ -18,11 +16,6 @@ namespace MissileSharp.Launcher.ViewModels
                 this.messageText = value;
                 OnPropertyChanged("MessageText");
             }
-        }
-
-        public ICommand CloseCommand
-        {
-            get { return new RelayCommand(o => ((Window)o).Close()); }
         }
     }
 }

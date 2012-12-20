@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel;
+using System.Windows;
+using System.Windows.Input;
 
 namespace MissileSharp.Launcher.ViewModels
 {
@@ -16,6 +18,11 @@ namespace MissileSharp.Launcher.ViewModels
             {
                 handler(this, new PropertyChangedEventArgs(name));
             }
+        }
+
+        public ICommand CloseCommand
+        {
+            get { return new RelayCommand(o => ((Window)o).Close()); }
         }
     }
 }
