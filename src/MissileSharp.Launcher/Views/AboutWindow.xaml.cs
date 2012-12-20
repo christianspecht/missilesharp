@@ -1,4 +1,5 @@
 ﻿using MahApps.Metro.Controls;
+using MissileSharp.Launcher.ViewModels;
 
 namespace MissileSharp.Launcher.Views
 {
@@ -7,8 +8,9 @@ namespace MissileSharp.Launcher.Views
     /// </summary>
     public partial class AboutWindow : MetroWindow
     {
-        public AboutWindow()
+        public AboutWindow(AboutWindowViewModel viewmodel)
         {
+            this.DataContext = viewmodel;
             InitializeComponent();
         }
     }
