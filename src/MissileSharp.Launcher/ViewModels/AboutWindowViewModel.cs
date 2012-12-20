@@ -28,6 +28,16 @@ namespace MissileSharp.Launcher.ViewModels
             get { return this.info.LegalCopyright; }
         }
 
+        public string SiteUrl
+        {
+            get { return this.info.CompanyName; }
+        }
+
+        public string LicenseUrl
+        {
+            get { return "https://bitbucket.org/christianspecht/missilesharp/raw/tip/License.txt"; }
+        }
+
         public void FollowLink(object url)
         {
             Process.Start(new ProcessStartInfo(url.ToString()));
