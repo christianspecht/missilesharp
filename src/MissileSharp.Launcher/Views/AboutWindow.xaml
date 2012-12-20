@@ -6,6 +6,10 @@
         Title="About MissileSharp Launcher"
         Height="230" Width="400"
         Icon="logo.ico"
+        ShowMinButton="False"
+        ShowMaxRestoreButton="False" 
+        ShowCloseButton="False"
+        FocusManager.FocusedElement="{Binding ElementName=OkButton}"
         >
     <StackPanel Margin="10">
         <Grid>
@@ -30,7 +34,13 @@
             MissileSharp is licensed under the <Hyperlink NavigateUri="https://bitbucket.org/christianspecht/missilesharp/raw/tip/License.txt">MIT License</Hyperlink>.
         </TextBlock>
         
-        <Button Height="30" Margin="0 10" Name="OkButton" Content="OK" />
+        <Button 
+            Height="30" 
+            Margin="0 10" 
+            Name="OkButton" 
+            Content="OK" 
+            Command="{Binding CloseCommand}"
+            CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"/>
 
     </StackPanel>
 </Controls:MetroWindow>
