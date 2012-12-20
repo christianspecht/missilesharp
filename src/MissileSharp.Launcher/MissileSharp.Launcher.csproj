@@ -152,6 +152,9 @@
     <Resource Include="..\..\img\logo.ico">
       <Link>Views\logo.ico</Link>
     </Resource>
+    <Resource Include="..\..\img\logo64x64.png">
+      <Link>Views\logo64x64.png</Link>
+    </Resource>
     <Content Include="..\MissileSharp.Demo\settings.txt">
       <Link>settings.txt</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
