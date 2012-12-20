@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows.Input;
 using MissileSharp.Launcher.Properties;
 using MissileSharp.Launcher.Services;
+using MissileSharp.Launcher.Views;
 
 namespace MissileSharp.Launcher.ViewModels
 {
@@ -14,6 +15,7 @@ namespace MissileSharp.Launcher.ViewModels
         private readonly IConfigService configService;
         private readonly IMessageService messageService;
         private readonly IShutdownService shutdownService;
+        private readonly IWindowService windowService;
 
         public ObservableCollection<string> CommandSets { get; set; }
 
@@ -27,12 +29,13 @@ namespace MissileSharp.Launcher.ViewModels
             get { return new RelayCommand(this.AboutBox); }
         }
 
-        public MainWindowViewModel(ICommandCenterService commandCenterService, IConfigService configService, IMessageService messageService, IShutdownService shutdownService)
+        public MainWindowViewModel(ICommandCenterService commandCenterService, IConfigService configService, IMessageService messageService, IShutdownService shutdownService, IWindowService windowService)
         {
             this.commandCenterService = commandCenterService;
             this.configService = configService;
             this.messageService = messageService;
             this.shutdownService = shutdownService;
+            this.windowService = windowService;
 
             Initialize();
         }
@@ -86,7 +89,8 @@ namespace MissileSharp.Launcher.ViewModels
 
         private void AboutBox(Object obj)
         {
-            this.messageService.ShowMessage("about");
+            var window = this.windowService.GetWindow<AboutWindow>();
+            window.ShowDialog();
         }
     }
 }
