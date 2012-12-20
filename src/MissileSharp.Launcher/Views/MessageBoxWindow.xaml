@@ -9,10 +9,12 @@
         ShowCloseButton="False"
         Icon="logo.ico"
         ShowTitleBar="True"
-        ShowIconOnTitleBar="true">
+        ShowIconOnTitleBar="true"
+        FocusManager.FocusedElement="{Binding ElementName=OkButton}">
     <Grid>
         <TextBlock Margin="5" Text="{Binding MessageText}" />
         <Button 
+            Name="OkButton"
             Content="OK"
             Command="{Binding CloseCommand}"
             CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"
