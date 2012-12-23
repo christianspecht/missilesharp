@@ -4,7 +4,7 @@
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         ResizeMode="NoResize"
         Title="About MissileSharp Launcher"
-        Height="230" Width="400"
+        Height="240" Width="400"
         Icon="logo.ico"
         ShowMinButton="False"
         ShowMaxRestoreButton="False" 
@@ -36,7 +36,7 @@
         
         <Button 
             Height="30" 
-            Margin="0 10" 
+            Margin="2 10 2 0" 
             Name="OkButton" 
             Content="OK" 
             Command="{Binding CloseCommand}"
