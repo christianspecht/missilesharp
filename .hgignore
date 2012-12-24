@@ -7,3 +7,4 @@ release
 AssemblyVersion.cs
 nuget-tmp
 TestResult.xml
+publish
