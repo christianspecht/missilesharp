@@ -161,7 +161,9 @@
 		<MSBuild
 			Projects="src\MissileSharp.Launcher\MissileSharp.Launcher.csproj"
 			Targets="Publish"
-			Properties="Configuration=Release;PublishDir=$(MSBuildProjectDirectory)\$(ReleaseDir)\clickonce-launcher\" />
+			Properties="Configuration=Release;
+						PublishDir=$(MSBuildProjectDirectory)\$(ReleaseDir)\clickonce-launcher\;
+						ApplicationVersion=$(ClickOnceVersionNumber)" />
 	</Target>
 	
 </Project>
