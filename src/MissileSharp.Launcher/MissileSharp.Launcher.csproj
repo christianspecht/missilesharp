@@ -27,6 +27,9 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <InstallUrl>http://christianspecht.de/download/missilesharp/</InstallUrl>
+    <SupportUrl>http://christianspecht.de/missilesharp/</SupportUrl>
+    <ErrorReportUrl>https://bitbucket.org/christianspecht/missilesharp/issues</ErrorReportUrl>
+    <ProductName>MissileSharp Launcher</ProductName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
     <ApplicationRevision>1</ApplicationRevision>
