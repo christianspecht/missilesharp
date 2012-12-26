@@ -33,6 +33,9 @@
 		
 		<!-- path to NUnit runner -->
 		<TestNUnitDir>src\packages\NUnit.Runners.2.6.0.12051\tools</TestNUnitDir>
+		
+		<!-- build ClickOnce setup for launcher? -->
+		<CreateClickOnce>0</CreateClickOnce>
 
 	</PropertyGroup>
 
@@ -48,6 +51,7 @@
 		<CallTarget Condition="$(CreateZip) == '1'" Targets="Zip"/>
 		<CallTarget Condition="$(CreateZip) == '1'" Targets="ZipLauncher"/>
 		<CallTarget Condition="$(CreatePackage) == '1'" Targets="NuGet"/>
+		<CallTarget Condition="$(CreateClickOnce) == '1'" Targets="ClickOnce"/>
 	</Target>
 
 
@@ -152,4 +156,12 @@
 	</Target>
 
 
+	<!-- build ClickOnce setup -->
+	<Target Name="ClickOnce">
+		<MSBuild
+			Projects="src\MissileSharp.Launcher\MissileSharp.Launcher.csproj"
+			Targets="Publish"
+			Properties="Configuration=Release;PublishDir=$(MSBuildProjectDirectory)\$(ReleaseDir)\clickonce-launcher\" />
+	</Target>
+	
 </Project>
