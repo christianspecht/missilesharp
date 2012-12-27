@@ -158,12 +158,26 @@
 
 	<!-- build ClickOnce setup -->
 	<Target Name="ClickOnce">
+	
+		<PropertyGroup>
+			<PubDir>$(MSBuildProjectDirectory)\$(ReleaseDir)\clickonce-launcher\</PubDir>
+			<CodeplexPubDir>$(MSBuildProjectDirectory)\$(ReleaseDir)\clickonce-launcher-codeplex\</CodeplexPubDir>
+		</PropertyGroup>
+	
+		<!-- 1. publish directly into the release folder -->
 		<MSBuild
 			Projects="src\MissileSharp.Launcher\MissileSharp.Launcher.csproj"
 			Targets="Publish"
 			Properties="Configuration=Release;
-						PublishDir=$(MSBuildProjectDirectory)\$(ReleaseDir)\clickonce-launcher\;
+						PublishDir=$(PubDir);
 						ApplicationVersion=$(ClickOnceVersionNumber)" />
+
+		<!-- 2. zip the published folder for uploading to CodePlex -->
+		<ItemGroup>
+			<ClickOnceFiles Include="$(PubDir)\**\*.*" />
+		</ItemGroup>
+		<Zip ZipFileName="$(CodeplexPubDir)\missilesharp-launcher-$(VersionNumber).zip" WorkingDirectory="$(PubDir)" Files="@(ClickOnceFiles)" />
+		
 	</Target>
 	
 </Project>
