@@ -49,10 +49,10 @@ namespace MissileSharp.Demo
                         case "2":
 
                             var commands = new List<LauncherCommand>();
-                            commands.Add(new LauncherCommand("reset", 0));
-                            commands.Add(new LauncherCommand("right", 1000));
-                            commands.Add(new LauncherCommand("up", 500));
-                            commands.Add(new LauncherCommand("fire", 2));
+                            commands.Add(new LauncherCommand(Command.Reset, 0));
+                            commands.Add(new LauncherCommand(Command.Right, 1000));
+                            commands.Add(new LauncherCommand(Command.Up, 500));
+                            commands.Add(new LauncherCommand(Command.Fire, 2));
 
                             launcher.RunCommandSet(commands);
 

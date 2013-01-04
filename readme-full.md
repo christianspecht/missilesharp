@@ -60,15 +60,15 @@ This is also available as a fluent interface:
 #### Executing sequences of commands
 
 Instead of directly calling the methods, you can also pass a complete sequence of commands at once as an `IEnumerable<LauncherCommand>`.  
-A `LauncherCommand` consists of a command string (e.g. `up` or `fire` - exactly the same commands as explained above) and a numeric parameter (for either the duration or the number of shots).
+A `LauncherCommand` consists of an [enum value](https://bitbucket.org/christianspecht/missilesharp/src/tip/src/MissileSharp/Command.cs) (e.g. `Command.Up` or `Command.Fire` - exactly the same commands as explained above) and a numeric parameter (for either the duration or the number of shots).
 
-The following code does the same as the previous example, but uses a `List<LauncherCommand>` instead of directly calling `Up`, `Fire` etc.:
+The following code does the same as the previous example, but creates and executes a `List<LauncherCommand>` instead of directly calling `Up`, `Fire` etc.:
 
 	var commands = new List<LauncherCommand>();
-	commands.Add(new LauncherCommand("reset", 0));
-	commands.Add(new LauncherCommand("right", 1000));
-	commands.Add(new LauncherCommand("up", 500));
-	commands.Add(new LauncherCommand("fire", 2));
+	commands.Add(new LauncherCommand(Command.Reset, 0));
+	commands.Add(new LauncherCommand(Command.Right, 1000));
+	commands.Add(new LauncherCommand(Command.Up, 500));
+	commands.Add(new LauncherCommand(Command.Fire, 2));
 
 	launcher.RunCommandSet(commands);
 
