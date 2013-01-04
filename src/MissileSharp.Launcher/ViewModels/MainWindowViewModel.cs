@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows.Input;
 using MissileSharp.Launcher.Properties;
@@ -11,22 +12,37 @@ namespace MissileSharp.Launcher.ViewModels
     public class MainWindowViewModel : BaseViewModel
     {
         private ICommandCenter model;
+        private bool disableGui;
         private readonly ICommandCenterService commandCenterService;
         private readonly IConfigService configService;
         private readonly IMessageService messageService;
         private readonly IShutdownService shutdownService;
         private readonly IWindowService windowService;
 
+        public bool DisableGui
+        {
+            get
+            {
+                return this.disableGui;
+            }
+            set
+            {
+                this.disableGui = value;
+                OnPropertyChanged("DisableGui");
+                CommandManager.InvalidateRequerySuggested();
+            }
+        }
+
         public ObservableCollection<string> CommandSets { get; set; }
 
         public ICommand FireCommand
         {
-            get { return new RelayCommand(this.FireMissile); }
+            get { return new RelayCommand(this.FireMissile, this.IsGuiEnabled); }
         }
 
         public ICommand AboutCommand
         {
-            get { return new RelayCommand(this.AboutBox); }
+            get { return new RelayCommand(this.AboutBox, this.IsGuiEnabled); }
         }
 
         public MainWindowViewModel(ICommandCenterService commandCenterService, IConfigService configService, IMessageService messageService, IShutdownService shutdownService, IWindowService windowService)
@@ -70,15 +86,39 @@ namespace MissileSharp.Launcher.ViewModels
                 return;
             }
 
-            try
+            Exception workerException = null;
+
+            var worker = new BackgroundWorker();
+            worker.DoWork += (o, ea) =>
             {
-                this.model.RunCommandSet(obj.ToString());
-            }
-            catch (Exception ex)
+                try
+                {
+                    this.model.RunCommandSet(obj.ToString());
+                }
+                catch (Exception ex)
+                {
+                    workerException = ex;
+                }
+            };
+
+            worker.RunWorkerCompleted += (o, ea) =>
             {
-                Shutdown(ex.Message);
-                return;
-            }
+                this.DisableGui = false;
+
+                if (workerException != null)
+                {
+                    Shutdown(workerException.Message);
+                    return;
+                }
+            };
+
+            this.DisableGui = true;
+            worker.RunWorkerAsync();
+        }
+
+        private bool IsGuiEnabled(Object obj)
+        {
+            return !this.DisableGui;
         }
 
         private void Shutdown(string message)
