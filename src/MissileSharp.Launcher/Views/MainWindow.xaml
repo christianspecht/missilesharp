@@ -31,5 +31,6 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+        <Controls:ProgressRing IsActive="{Binding DisableGui}" />
     </Grid>
 </Controls:MetroWindow>
