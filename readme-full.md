@@ -83,7 +83,8 @@ A config file with the commands from the examples above would look like this:
 	up,500
 	fire,2
 
-You can save several of these command sets in the same file, each one under its own name (in this case, "Steve").
+You can save several of these command sets in the same file, each one under its own name (in this case, "Steve").  
+Lines beginning with `#` will be ignored and can be used for comments.
 
 First, you have to load the file once:
 

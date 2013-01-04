@@ -3,6 +3,8 @@ reset,0
 up,1000
 fire,4
 
+# lines starting with "#" are comments and will be ignored
+
 [Steve]
 reset,0
 right,1000

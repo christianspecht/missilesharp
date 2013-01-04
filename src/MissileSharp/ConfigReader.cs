@@ -45,7 +45,7 @@ namespace MissileSharp
                 {
                     key = line.Substring(1, line.Length - 2);
                 }
-                else if (line.Length > 0) // ignore empty lines
+                else if (line.Length > 0 && !line.StartsWith("#")) // ignore empty lines and #comments
                 {
                     if (string.IsNullOrEmpty(key))
                     {

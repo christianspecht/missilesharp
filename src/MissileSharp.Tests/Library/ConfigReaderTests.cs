@@ -17,6 +17,7 @@ namespace MissileSharp.Tests.Library
             conf.Add(string.Empty);
             conf.Add("[name2]");
             conf.Add("right,20");
+            conf.Add("# comment");
             conf.Add("fire,2");
 
             return GetConfigFromList(conf);
