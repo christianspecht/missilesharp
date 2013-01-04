@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using MissileSharp.Launcher.Services;
 using MissileSharp.Launcher.ViewModels;
 using Moq;
@@ -65,6 +66,11 @@ namespace MissileSharp.Tests.Launcher
             return new MainWindowViewModel(commandCenterService, configService, messageService, shutdownService, windowService);
         }
 
+        private void Sleep()
+        {
+            Thread.Sleep(50);
+        }
+
         [Test]
         public void Initialize_IsExecuted_DoesntShutdown()
         {
@@ -104,6 +110,7 @@ namespace MissileSharp.Tests.Launcher
             var viewmodel = SetupViewModel();
             viewmodel.FireCommand.Execute("test");
 
+            Sleep();
             this.commandcenter.Verify(mock => mock.RunCommandSet("test"));
         }
 
@@ -114,6 +121,7 @@ namespace MissileSharp.Tests.Launcher
             var viewmodel = SetupViewModel();
             viewmodel.FireCommand.Execute("test");
 
+            Sleep();
             this.shutdownservice.Verify(mock => mock.Shutdown());
         }
 
