@@ -7,6 +7,11 @@ namespace MissileSharp
     public interface ILauncherModel
     {
         /// <summary>
+        /// Name of the device (human readable)
+        /// </summary>
+        string ModelName { get; }
+
+        /// <summary>
         /// VendorId of the device
         /// </summary>
         int VendorId { get; }

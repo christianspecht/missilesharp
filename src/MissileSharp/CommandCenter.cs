@@ -48,6 +48,17 @@ namespace MissileSharp
         }
 
         /// <summary>
+        /// The name of the device
+        /// </summary>
+        public string LauncherModelName
+        {
+            get
+            {
+                return this.launcher.ModelName;
+            }
+        }
+
+        /// <summary>
         /// The device is ready to receive commands
         /// </summary>
         public bool IsReady

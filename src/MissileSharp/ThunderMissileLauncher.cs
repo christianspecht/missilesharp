@@ -7,6 +7,11 @@ namespace MissileSharp
     #pragma warning disable 1591
     public class ThunderMissileLauncher : ILauncherModel
     {
+        public string ModelName
+        {
+            get { return "Dream Cheeky Thunder Missile Launcher"; }
+        }
+
         public int VendorId
         {
             get { return 0x2123; }

@@ -14,6 +14,11 @@ namespace MissileSharp
         bool IsReady { get; }
 
         /// <summary>
+        /// The name of the device
+        /// </summary>
+        string LauncherModelName { get; }
+
+        /// <summary>
         /// Runs a LauncherCommand
         /// </summary>
         /// <param name="command">The command to run</param>
