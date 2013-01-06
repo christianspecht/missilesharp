@@ -8,20 +8,23 @@ namespace MissileSharp.Launcher.Services
     /// </summary>
     public class ConfigService : IConfigService
     {
+        public string ConfigFileName
+        {
+            get { return "settings.txt"; }
+        }
+
         public string[] GetConfig()
         {
-            string configFile = "settings.txt";
-
-            if (!File.Exists(configFile))
+            if (!File.Exists(this.ConfigFileName))
             {
-                throw new FileNotFoundException(Resources.ConfigFileMissing + configFile);
+                throw new FileNotFoundException(Resources.ConfigFileMissing + this.ConfigFileName);
             }
 
-            var configFileLines = File.ReadAllLines(configFile);
+            var configFileLines = File.ReadAllLines(this.ConfigFileName);
 
             if (configFileLines.Length == 0)
             {
-                throw new FileFormatException(Resources.ConfigFileEmpty + configFile);
+                throw new FileFormatException(Resources.ConfigFileEmpty + this.ConfigFileName);
             }
 
             return configFileLines;

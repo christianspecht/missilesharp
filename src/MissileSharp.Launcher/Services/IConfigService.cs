@@ -6,6 +6,7 @@ namespace MissileSharp.Launcher.Services
     /// </summary>
     public interface IConfigService
     {
+        string ConfigFileName { get; }
         string[] GetConfig();
     }
 }

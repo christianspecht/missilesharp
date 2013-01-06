@@ -163,7 +163,7 @@ namespace MissileSharp.Launcher.ViewModels
 
         private void OpenSettingsFile(Object obj)
         {
-            Process.Start("settings.txt");
+            Process.Start(this.configService.ConfigFileName);
         }
     }
 }
