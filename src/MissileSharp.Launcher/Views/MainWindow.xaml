@@ -8,9 +8,15 @@
         ShowIconOnTitleBar="true">
     <Controls:MetroWindow.WindowCommands>
         <Controls:WindowCommands>
-            <Button Content="ABOUT" Command="{Binding AboutCommand}" />
-            <Button Content="EDIT SETTINGS" Command="{Binding EditSettingsCommand}" />
-            <Button Content="RELOAD SETTINGS" Command="{Binding ReloadSettingsCommand}" />
+            <Button Command="{Binding EditSettingsCommand}">
+                <Image Source="appbar.settings.png" />
+            </Button>
+            <Button Command="{Binding ReloadSettingsCommand}">
+                <Image Source="appbar.refresh.png" />
+            </Button>
+            <Button Command="{Binding AboutCommand}">
+                <Image Source="appbar.question.png" />
+            </Button>
         </Controls:WindowCommands>
     </Controls:MetroWindow.WindowCommands>
     <Grid>

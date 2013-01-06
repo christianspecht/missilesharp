@@ -115,6 +115,7 @@ MissileSharp makes use of the following open source projects:
 - [Autofac](http://autofac.org)
 - [Hid Library](https://github.com/mikeobrien/HidLibrary)
 - [MahApps.Metro](http://mahapps.com/MahApps.Metro/)
+- [Modern UI Icons](http://modernuiicons.com/)
 - [Moq](http://code.google.com/p/moq/)
 - [MSBuild Community Tasks](https://github.com/loresoft/msbuildtasks)
 - [NuGet](http://nuget.codeplex.com/)

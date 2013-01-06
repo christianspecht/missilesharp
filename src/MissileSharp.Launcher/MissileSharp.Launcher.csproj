@@ -196,6 +196,15 @@
     <Resource Include="..\..\img\logo64x64.png">
       <Link>Views\logo64x64.png</Link>
     </Resource>
+    <Resource Include="..\..\img\WindowsIcons\appbar.question.png">
+      <Link>Views\appbar.question.png</Link>
+    </Resource>
+    <Resource Include="..\..\img\WindowsIcons\appbar.refresh.png">
+      <Link>Views\appbar.refresh.png</Link>
+    </Resource>
+    <Resource Include="..\..\img\WindowsIcons\appbar.settings.png">
+      <Link>Views\appbar.settings.png</Link>
+    </Resource>
     <Content Include="..\MissileSharp.Demo\settings.txt">
       <Link>settings.txt</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
