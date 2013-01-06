@@ -30,7 +30,7 @@ namespace MissileSharp.Launcher.ViewModels
 
         public string SiteUrl
         {
-            get { return this.info.CompanyName; }
+            get { return this.info.CompanyName + "#launcher"; }
         }
 
         public string LicenseUrl

@@ -11,7 +11,7 @@ For now it supports only one model, the [Dream Cheeky Thunder](http://www.dreamc
 
 - [Download page](https://bitbucket.org/christianspecht/missilesharp/downloads)
 - [NuGet gallery](https://nuget.org/packages/MissileSharp)
-- [Found a bug?](https://bitbucket.org/christianspecht/missilesharp/issues/new)
+- [Report a bug](https://bitbucket.org/christianspecht/missilesharp/issues/new)
 - [Main project page on Bitbucket](https://bitbucket.org/christianspecht/missilesharp)
 
 ---
@@ -94,8 +94,34 @@ After that, you can execute any of the command sets by referring to the name:
 	
 	launcher.RunCommandSet("Steve");   // shoot Steve
 
-If you want to see a complete example, there is a demo console application in the code (not in the releases).  
+If you want to see a simple but complete example, there is a demo console application in the code (not in the releases).  
 Look at [the code](https://bitbucket.org/christianspecht/missilesharp/src/tip/src/MissileSharp.Demo/Program.cs) and [the config file](https://bitbucket.org/christianspecht/missilesharp/src/tip/src/MissileSharp.Demo/settings.txt).
+
+For a more complex demo application, take a look at the MissileSharp Launcher:
+
+---
+
+<a name="launcher"></a>
+# MissileSharp Launcher
+
+MissileSharp Launcher is a WPF application, which uses MissileSharp to do exactly what is described in the "Config files" section above:  
+On startup, it automatically loads command sets from a settings file and displays a button for each available command set. You can run the command sets by clicking the respective button.
+
+Using the [config file](https://bitbucket.org/christianspecht/missilesharp/src/tip/src/MissileSharp.Demo/settings.txt) from the previous example, it looks like this:
+
+![MissileSharp Launcher screenshot](https://bitbucket.org/christianspecht/missilesharp/raw/tip/img/launcher.png)
+
+You can edit the settings file at runtime with these two buttons:  
+![Edit Settings](https://bitbucket.org/christianspecht/missilesharp/raw/tip/img/launcher-settings.png)  
+The left one opens the settings file for editing.  
+After editing, click the right button to re-load the settings from the file.
+
+#### How to get MissileSharp Launcher:
+
+- [Install via ClickOnce](http://missilesharp.codeplex.com/downloads/get/clickOnce/MissileSharp.Launcher.application)
+- [Download a zip file with the binaries](https://bitbucket.org/christianspecht/missilesharp/downloads)
+
+At the moment, MissileSharp Launcher always uses the Thunder Missile Launcher model (hardcoded in `app.config`), but that will be changed when MissileSharp supports more than one model.
 
 ---
 
