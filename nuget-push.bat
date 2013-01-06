@@ -6,7 +6,7 @@ pause
 
 call version-number.bat
 
-cd %~dp0\release\nuget
+cd %~dp0\release\lib-nuget
 
 rem ..\..\src\packages\NuGet.CommandLine.1.8.40002\tools\nuget.exe setapikey xxx
 rem -s https://preview.nuget.org
