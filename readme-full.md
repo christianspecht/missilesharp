@@ -102,7 +102,7 @@ For a more complex demo application, take a look at the MissileSharp Launcher:
 ---
 
 <a name="launcher"></a>
-# MissileSharp Launcher
+## MissileSharp Launcher
 
 MissileSharp Launcher is a WPF application, which uses MissileSharp to do exactly what is described in the "Config files" section above:  
 On startup, it automatically loads command sets from a settings file and displays a button for each available command set. You can run the command sets by clicking the respective button.
