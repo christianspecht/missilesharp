@@ -79,7 +79,7 @@
 
 	<!-- copy files to release folder -->
 	<Target Name="CopyRelease">
-		<MakeDir Directories="$(ReleaseDir)\bin"/>
+		<MakeDir Directories="$(ReleaseDir)\lib-bin"/>
 		<ItemGroup>
 			<ReleaseFiles
 				Include="$(OutDir)\*.*;
@@ -88,13 +88,13 @@
 				Exclude="$(OutDir)\*.pdb">
 			</ReleaseFiles>
 		</ItemGroup>
-		<Copy SourceFiles="@(ReleaseFiles)" DestinationFolder="$(ReleaseDir)\bin"/>
+		<Copy SourceFiles="@(ReleaseFiles)" DestinationFolder="$(ReleaseDir)\lib-bin"/>
 	</Target>
 
 
 	<!-- copy files to launcher release folder -->
 	<Target Name="CopyReleaseLauncher">
-		<MakeDir Directories="$(ReleaseDir)\bin-launcher"/>
+		<MakeDir Directories="$(ReleaseDir)\launcher-bin"/>
 		<ItemGroup>
 			<LauncherReleaseFiles
 				Include="$(LauncherOutDir)\*.*;
@@ -104,40 +104,40 @@
 						$(LauncherOutDir)\*.xml">
 			</LauncherReleaseFiles>
 		</ItemGroup>
-		<Copy SourceFiles="@(LauncherReleaseFiles)" DestinationFolder="$(ReleaseDir)\bin-launcher"/>
+		<Copy SourceFiles="@(LauncherReleaseFiles)" DestinationFolder="$(ReleaseDir)\launcher-bin"/>
 	</Target>
 
 
 	<!-- create zip file with content of release\bin folder -->
 	<Target Name="Zip">
-		<CreateItem Include="$(ReleaseDir)\bin\*.*" >
+		<CreateItem Include="$(ReleaseDir)\lib-bin\*.*" >
 			<Output ItemName="ZipFiles" TaskParameter="Include"/>
 		</CreateItem>
-		<Zip ZipFileName="$(ReleaseDir)\zip\missilesharp-$(VersionNumber).zip" WorkingDirectory="$(ReleaseDir)\bin" Files="@(ZipFiles)" />
+		<Zip ZipFileName="$(ReleaseDir)\lib-zip\missilesharp-$(VersionNumber).zip" WorkingDirectory="$(ReleaseDir)\lib-bin" Files="@(ZipFiles)" />
 	</Target>
 
 
-	<!-- create zip file with content of release\bin-launcher folder -->
+	<!-- create zip file with content of release\launcher-bin folder -->
 	<Target Name="ZipLauncher">
-		<CreateItem Include="$(ReleaseDir)\bin-launcher\*.*" >
+		<CreateItem Include="$(ReleaseDir)\launcher-bin\*.*" >
 			<Output ItemName="LauncherZipFiles" TaskParameter="Include"/>
 		</CreateItem>
-		<Zip ZipFileName="$(ReleaseDir)\zip-launcher\missilesharp-launcher-$(VersionNumber).zip" WorkingDirectory="$(ReleaseDir)\bin-launcher" Files="@(LauncherZipFiles)" />
+		<Zip ZipFileName="$(ReleaseDir)\launcher-zip\missilesharp-launcher-$(VersionNumber).zip" WorkingDirectory="$(ReleaseDir)\launcher-bin" Files="@(LauncherZipFiles)" />
 	</Target>
 
 
 	<!-- create NuGet package-->
 	<Target Name="NuGet">
 		<MakeDir Directories="$(NuGetDir)\lib\net40"/>
-		<MakeDir Directories="$(ReleaseDir)\nuget"/>
+		<MakeDir Directories="$(ReleaseDir)\lib-nuget"/>
 		
 		<!-- 1. copy the whole release folder (except the assemblies) and the nuspec file into the temp. NuGet folder -->
 		<ItemGroup>
 			<PackageFiles1
-				Include="$(ReleaseDir)\bin\*.*;
+				Include="$(ReleaseDir)\lib-bin\*.*;
 						nuget\*.nuspec"
-				Exclude="$(ReleaseDir)\bin\*.dll;
-						$(ReleaseDir)\bin\*.xml">
+				Exclude="$(ReleaseDir)\lib-bin\*.dll;
+						$(ReleaseDir)\lib-bin\*.xml">
 			</PackageFiles1>
 		</ItemGroup>
 		<Copy SourceFiles="@(PackageFiles1)" DestinationFolder="$(NuGetDir)"/>
@@ -145,14 +145,14 @@
 		<!-- 2. copy the assemblies into the net40 subfolder -->
 		<ItemGroup>
 			<PackageFiles2
-				Include="$(ReleaseDir)\bin\m*.dll;
-						$(ReleaseDir)\bin\*.xml">
+				Include="$(ReleaseDir)\lib-bin\m*.dll;
+						$(ReleaseDir)\lib-bin\*.xml">
 			</PackageFiles2>
 		</ItemGroup>
 		<Copy SourceFiles="@(PackageFiles2)" DestinationFolder="$(NuGetDir)\lib\net40"/>
 		
 		<!-- 3. create package -->
-		<Exec Command="src\packages\NuGet.CommandLine.1.8.40002\tools\nuget.exe pack $(NuGetDir)\missilesharp.nuspec -OutputDirectory $(ReleaseDir)\nuget -Version $(VersionNumber)"></Exec>
+		<Exec Command="src\packages\NuGet.CommandLine.1.8.40002\tools\nuget.exe pack $(NuGetDir)\missilesharp.nuspec -OutputDirectory $(ReleaseDir)\lib-nuget -Version $(VersionNumber)"></Exec>
 	</Target>
 
 
@@ -160,8 +160,8 @@
 	<Target Name="ClickOnce">
 	
 		<PropertyGroup>
-			<PubDir>$(MSBuildProjectDirectory)\$(ReleaseDir)\clickonce-launcher\</PubDir>
-			<CodeplexPubDir>$(MSBuildProjectDirectory)\$(ReleaseDir)\clickonce-launcher-codeplex\</CodeplexPubDir>
+			<PubDir>$(MSBuildProjectDirectory)\$(ReleaseDir)\launcher-clickonce\</PubDir>
+			<CodeplexPubDir>$(MSBuildProjectDirectory)\$(ReleaseDir)\launcher-clickonce-codeplex\</CodeplexPubDir>
 		</PropertyGroup>
 	
 		<!-- 1. publish directly into the release folder -->
