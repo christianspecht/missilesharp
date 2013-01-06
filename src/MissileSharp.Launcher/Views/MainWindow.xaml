@@ -9,6 +9,8 @@
     <Controls:MetroWindow.WindowCommands>
         <Controls:WindowCommands>
             <Button Content="ABOUT" Command="{Binding AboutCommand}" />
+            <Button Content="EDIT SETTINGS" Command="{Binding EditSettingsCommand}" />
+            <Button Content="RELOAD SETTINGS" Command="{Binding ReloadSettingsCommand}" />
         </Controls:WindowCommands>
     </Controls:MetroWindow.WindowCommands>
     <Grid>

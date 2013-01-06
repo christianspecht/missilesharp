@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows.Input;
 using MissileSharp.Launcher.Properties;
@@ -13,6 +14,7 @@ namespace MissileSharp.Launcher.ViewModels
     {
         private ICommandCenter model;
         private bool disableGui;
+        private ObservableCollection<string> commandSets;
         private readonly ICommandCenterService commandCenterService;
         private readonly IConfigService configService;
         private readonly IMessageService messageService;
@@ -33,7 +35,18 @@ namespace MissileSharp.Launcher.ViewModels
             }
         }
 
-        public ObservableCollection<string> CommandSets { get; set; }
+        public ObservableCollection<string> CommandSets 
+        {
+            get
+            {
+                return this.commandSets;
+            }
+            set
+            {
+                this.commandSets = value;
+                OnPropertyChanged("CommandSets");
+            }
+        }
 
         public ICommand FireCommand
         {
@@ -43,6 +56,16 @@ namespace MissileSharp.Launcher.ViewModels
         public ICommand AboutCommand
         {
             get { return new RelayCommand(this.AboutBox, this.IsGuiEnabled); }
+        }
+
+        public ICommand EditSettingsCommand
+        {
+            get { return new RelayCommand(this.OpenSettingsFile, this.IsGuiEnabled); }
+        }
+
+        public ICommand ReloadSettingsCommand
+        {
+            get { return new RelayCommand(this.LoadCommandSets, this.IsGuiEnabled); }
         }
 
         public MainWindowViewModel(ICommandCenterService commandCenterService, IConfigService configService, IMessageService messageService, IShutdownService shutdownService, IWindowService windowService)
@@ -61,13 +84,18 @@ namespace MissileSharp.Launcher.ViewModels
             try
             {
                 this.model = this.commandCenterService.GetCommandCenter();
-                this.model.LoadCommandSets(this.configService.GetConfig());
+                LoadCommandSets(null);
             }
             catch (Exception ex)
             {
                 Shutdown(ex.Message);
                 return;
             }
+        }
+
+        private void LoadCommandSets(Object obj)
+        {
+            this.model.LoadCommandSets(this.configService.GetConfig());
 
             if (!this.model.GetLoadedCommandSetNames().Any())
             {
@@ -131,6 +159,11 @@ namespace MissileSharp.Launcher.ViewModels
         {
             var window = this.windowService.GetWindow<AboutWindow>();
             window.ShowDialog();
+        }
+
+        private void OpenSettingsFile(Object obj)
+        {
+            Process.Start("settings.txt");
         }
     }
 }
