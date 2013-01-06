@@ -26,8 +26,8 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <InstallUrl>https://missilesharp.codeplex.com/releases/clickonce/</InstallUrl>
-    <SupportUrl>http://christianspecht.de/missilesharp/</SupportUrl>
+    <InstallUrl>http://missilesharp.codeplex.com/releases/clickonce/</InstallUrl>
+    <SupportUrl>http://christianspecht.de/missilesharp/#launcher</SupportUrl>
     <ErrorReportUrl>https://bitbucket.org/christianspecht/missilesharp/issues</ErrorReportUrl>
     <ProductName>MissileSharp Launcher</ProductName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
