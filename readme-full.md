@@ -10,8 +10,9 @@ For now it supports only one model, the [Dream Cheeky Thunder](http://www.dreamc
 
 ## Links
 
-- [Download page](https://bitbucket.org/christianspecht/missilesharp/downloads)
-- [NuGet gallery](https://nuget.org/packages/MissileSharp)
+- [Download page](https://bitbucket.org/christianspecht/missilesharp/downloads) *(MissileSharp and MissileSharp Launcher)*
+    - [Install MissileSharp via NuGet](https://nuget.org/packages/MissileSharp)
+    - [Install the MissileSharp Launcher via ClickOnce](http://missilesharp.codeplex.com/downloads/get/clickOnce/MissileSharp.Launcher.application)
 - [Report a bug](https://bitbucket.org/christianspecht/missilesharp/issues/new)
 - [Main project page on Bitbucket](https://bitbucket.org/christianspecht/missilesharp)
 
