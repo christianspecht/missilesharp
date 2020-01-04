@@ -1,7 +1,7 @@
-![logo](https://bitbucket.org/christianspecht/missilesharp/raw/tip/img/logo128x128.png)
+![logo](https://raw.githubusercontent.com/christianspecht/missilesharp/master/img/logo128x128.png)
 
 MissileSharp is a .NET library to control an USB Missile Launcher.  
-*(There is also a demo app called the [MissileSharp Launcher](http://christianspecht.de/missilesharp/#launcher))*
+*(There is also a demo app called the [MissileSharp Launcher](https://christianspecht.de/missilesharp/#launcher))*
 
 For now it supports only one model, the [Dream Cheeky Thunder](http://www.dreamcheeky.com/thunder-missile-launcher), as this is the only one I own.  
 *(I'm in Germany, and I bought my missile launcher [from a German shop](http://www.getdigital.de/products/USB_Raketenwerfer)...but it seems to be the exact same model as the Dream Cheeky Thunder.)*
@@ -10,19 +10,18 @@ For now it supports only one model, the [Dream Cheeky Thunder](http://www.dreamc
 
 ## Links
 
-- [Download page](https://bitbucket.org/christianspecht/missilesharp/downloads) *(MissileSharp and MissileSharp Launcher)*
+- [Download page](https://github.com/christianspecht/missilesharp/releases) *(MissileSharp and MissileSharp Launcher)*
     - [Install MissileSharp via NuGet](https://nuget.org/packages/MissileSharp)
-    - [Install the MissileSharp Launcher via ClickOnce](http://missilesharp.codeplex.com/downloads/get/clickOnce/MissileSharp.Launcher.application)
-- [Report a bug](https://bitbucket.org/christianspecht/missilesharp/issues/new)
-- [Main project page on Bitbucket](https://bitbucket.org/christianspecht/missilesharp)
+- [Report a bug](https://github.com/christianspecht/missilesharp/issues/new)
+- [Main project page on GitHub](https://github.com/christianspecht/missilesharp)
 
 ---
 
 ## Setup
 
-You can either download MissileSharp from the download page on Bitbucket (link above) or install with [NuGet](https://nuget.org/):
+You can either download MissileSharp from the download page on GitHub (link above) or install with [NuGet](https://nuget.org/):
 
-[![NuGet](https://bitbucket.org/christianspecht/missilesharp/raw/tip/img/nuget.png)](https://nuget.org/packages/MissileSharp)
+[![NuGet](https://raw.githubusercontent.com/christianspecht/missilesharp/master/img/nuget.png)](https://nuget.org/packages/MissileSharp)
 
 The control software that came with the missile launcher is not needed at all.  
 Just connect the device to your machine, and Windows should automatically recognize it. That's enough for MissileSharp to control it.
@@ -70,7 +69,7 @@ This is also available as a fluent interface:
 ### Executing sequences of commands
 
 Instead of directly calling the methods, you can also pass a complete sequence of commands at once as an `IEnumerable<LauncherCommand>`.  
-A `LauncherCommand` consists of an [enum value](https://bitbucket.org/christianspecht/missilesharp/src/tip/src/MissileSharp/Command.cs) (e.g. `Command.Up` or `Command.Fire` - exactly the same commands as explained above) and a numeric parameter (for either the duration or the number of shots).
+A `LauncherCommand` consists of an [enum value](https://github.com/christianspecht/missilesharp/blob/master/src/MissileSharp/Command.cs) (e.g. `Command.Up` or `Command.Fire` - exactly the same commands as explained above) and a numeric parameter (for either the duration or the number of shots).
 
 The following code does the same as the previous example, but creates and executes a `List<LauncherCommand>` instead of directly calling `Up`, `Fire` etc.:
 
@@ -105,7 +104,7 @@ After that, you can execute any of the command sets by referring to the name:
 	launcher.RunCommandSet("Steve");   // shoot Steve
 
 If you want to see a simple but complete example, there is a demo console application in the code (not in the releases).  
-Look at [the code](https://bitbucket.org/christianspecht/missilesharp/src/tip/src/MissileSharp.Demo/Program.cs) and [the config file](https://bitbucket.org/christianspecht/missilesharp/src/tip/src/MissileSharp.Demo/settings.txt).
+Look at [the code](https://github.com/christianspecht/missilesharp/blob/master/src/MissileSharp.Demo/Program.cs) and [the config file](https://github.com/christianspecht/missilesharp/blob/master/src/MissileSharp.Demo/settings.txt).
 
 For a more complex demo application, take a look at the MissileSharp Launcher:
 
@@ -117,19 +116,18 @@ For a more complex demo application, take a look at the MissileSharp Launcher:
 MissileSharp Launcher is a WPF application, which uses MissileSharp to do exactly what is described in the "Config files" section above:  
 On startup, it automatically loads command sets from a settings file and displays a button for each available command set. You can run the command sets by clicking the respective button.
 
-Using the [config file](https://bitbucket.org/christianspecht/missilesharp/src/tip/src/MissileSharp.Demo/settings.txt) from the previous example, it looks like this:
+Using the [config file](https://github.com/christianspecht/missilesharp/blob/master/src/MissileSharp.Demo/settings.txt) from the previous example, it looks like this:
 
-![MissileSharp Launcher screenshot](https://bitbucket.org/christianspecht/missilesharp/raw/tip/img/launcher.png)
+![MissileSharp Launcher screenshot](https://raw.githubusercontent.com/christianspecht/missilesharp/master/img/launcher.png)
 
 You can edit the settings file at runtime with these two buttons:  
-![Edit Settings](https://bitbucket.org/christianspecht/missilesharp/raw/tip/img/launcher-settings.png)  
+![Edit Settings](https://raw.githubusercontent.com/christianspecht/missilesharp/master/img/launcher-settings.png)  
 The left one opens the settings file for editing.  
 After editing, click the right button to re-load the settings from the file.
 
 ### How to get MissileSharp Launcher:
 
-- [Install via ClickOnce](http://missilesharp.codeplex.com/downloads/get/clickOnce/MissileSharp.Launcher.application)
-- [Download a zip file with the binaries](https://bitbucket.org/christianspecht/missilesharp/downloads)
+[Download a zip file with the binaries](https://github.com/christianspecht/missilesharp/releases)
 
 At the moment, MissileSharp Launcher always uses the Thunder Missile Launcher model (hardcoded in `app.config`), but that will be changed when MissileSharp supports more than one model.
 
@@ -144,29 +142,30 @@ Run `build-release.bat` to create a NuGet package and a zip file (all in the `re
 
 ### Acknowledgements
 
-Thanks to [Chris Dance](https://github.com/codedance) for [the inspiration to this](https://github.com/codedance/Retaliation), especially his blog post [Who broke the build?](http://www.papercut.com/blog/chris/2011/08/19/who-broke-the-build/) which made me want to buy my own missile launcher and write a library for it.
+Thanks to [Chris Dance](https://github.com/codedance) for [the inspiration to this](https://github.com/codedance/Retaliation), especially his blog post [Who broke the build?](https://blog.papercut.com/who-broke-the-build/) which made me want to buy my own missile launcher and write a library for it.
 
 MissileSharp makes use of the following open source projects:
 
-- [Autofac](http://autofac.org)
+- [Autofac](https://autofac.org)
 - [Hid Library](https://github.com/mikeobrien/HidLibrary)
-- [MahApps.Metro](http://mahapps.com/MahApps.Metro/)
+- [MahApps.Metro](https://mahapps.com/)
 - [Modern UI Icons](http://modernuiicons.com/)
-- [Moq](http://code.google.com/p/moq/)
+- [Moq](https://github.com/Moq/moq4/)
 - [MSBuild Community Tasks](https://github.com/loresoft/msbuildtasks)
-- [NuGet](http://nuget.codeplex.com/)
-- [NUnit](http://nunit.org/)
+- [NuGet](https://www.nuget.org/)
+- [NUnit](https://nunit.org/)
 
 ---
 
+<div id="license"></div>
 ### License
 
-MissileSharp is licensed under the MIT License. See [License.txt](https://bitbucket.org/christianspecht/missilesharp/raw/tip/License.txt) for details.
+MissileSharp is licensed under the MIT License. See [License.txt](https://raw.githubusercontent.com/christianspecht/missilesharp/master/License.txt) for details.
 
 ---
 
 ### Project Info
 
-<script type="text/javascript" src="http://www.ohloh.net/p/602597/widgets/project_basic_stats.js"></script>  
-<script type="text/javascript" src="http://www.ohloh.net/p/602597/widgets/project_languages.js"></script>
+<script type='text/javascript' src='https://www.openhub.net/p/missilesharp/widgets/project_basic_stats?format=js'></script>
+<script type='text/javascript' src='https://www.openhub.net/p/missilesharp/widgets/project_languages?format=js'></script>
 

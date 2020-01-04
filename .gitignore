@@ -1,0 +1,9 @@
+syntax: glob
+*.suo
+*.user
+bin
+obj
+release
+AssemblyVersion.cs
+nuget-tmp
+TestResult.xml
